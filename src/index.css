@@ -1,17 +1,39 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.4;
   font-weight: 400;
+  font-size: 62.5%;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --clr-primary-navbar: #004643;
+  --clr-primary: #97d789;
+  --clr-secondary: #f8f7ed;
+  --clr-secondary-box: #f8f7ed;
+  --clr-primary-text: #0f3433;
+  --clr-secondary-text: #abd1c6;
+  --clr-btn: #79cb67;
+  --clr-btn-navbar: #fffffe;
+  --clr-btn-text: #001e1d;
+  --clr-btn-hover: #489c35;
+  --clr-primary-headline: #86d973;
+  --clr-secondary-headline: #fffffe;
+  --clr-card-headline: #001e1d;
+  --clr-card-bg: #abd1c6;
+  --clr-box-bg: #fffffe;
+  --clr-footer-bg: #a1db95;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  --clr-hover-text: #fbdd74;
+  --clr-receipe-box: #345e36de;
+
+  --fz-header: 1.4rem;
+  --fz-title: 2.4rem;
+
+  --br: 5px;
+  --ts: .2s;
+  --bs: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  --clr-beige: #f5f5dc;
+  --clr-white: white;
+  --clr-black: #000;
 }
 
 a {
