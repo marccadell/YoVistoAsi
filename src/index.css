@@ -20,6 +20,11 @@
   --clr-card-bg: #abd1c6;
   --clr-box-bg: #fffffe;
   --clr-footer-bg: #a1db95;
+  --clr-boxborder-box1: #020202;
+  --clr-boxborder-box2: #0c25b6;
+  --clr-boxborder-box3: rgb(3, 103, 234);
+  --clr-boxborder-box4: #0abced;
+
 
   --clr-hover-text: #fbdd74;
   --clr-receipe-box: #345e36de;
