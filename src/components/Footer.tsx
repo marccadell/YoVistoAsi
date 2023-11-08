@@ -92,7 +92,7 @@ const FooterObj = [
             {
                 name: 'Facebook',
                 link: '#',
-                icon: <i className="fa-brands fa-facebook-f"></i>
+                icon: faFacebook
             },
             {
                 name: 'Google',
