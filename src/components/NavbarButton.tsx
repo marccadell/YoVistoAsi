@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import React from 'react';
 
-function NavbarButton() {
+function NavbarButton({ onClick }) {
     return (
-        <ButtonNav>
+        <ButtonNav onClick={onClick}>
             <div className="icon nav-icon-5">
                 <span></span>
-                <span></span>
-                <span></span>
+                <span></span>    
+                <span></span>       
             </div>
         </ButtonNav>
     );
@@ -19,10 +19,10 @@ const ButtonNav = styled.div`
     .nav-icon-5{
         width: 35px;
         height: 30px;
-        margin: 10px 10px;
+        margin: 0.78rem 10px;
         position: relative;
         cursor: pointer;
-        display: inline-block;
+        display: inline-block; 
     }
 
     .nav-icon-5 span{
