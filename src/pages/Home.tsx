@@ -24,7 +24,7 @@ const Title = styled.h1`
     margin: 16px 0;
     // Box Border
     border: 2px dashed;
-    border-color: var(--clr-boxborder-box2);
+
 `;
 
 const SubTitle = styled.h2`
