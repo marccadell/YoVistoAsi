@@ -14,7 +14,6 @@ export const Container = styled.div`
     max-width: 1140px;
     box-sizing: border-box;
     // Box Border
-    border: 2px dashed;
     border-color: var(--clr-boxborder-box1);
 `;
 
