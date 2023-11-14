@@ -1,3 +1,4 @@
+
 :root {
   font-family: "Roboto", sans-serif;
   line-height: 1.4;
@@ -19,8 +20,8 @@
   --clr-card-headline: #001e1d;
   --clr-card-bg: #abd1c6;
   --clr-box-bg: #fffffe;
-  --clr-footer-bg: #a1db95;
-  --clr-navbar-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --clr-footer-bg: rgb(0, 0, 0);
+  --clr-navbar-bg: black;
   --clr-navbartoogle-bg: linear-gradient(135deg, #667eea 40%, #764ba2 100%);
   --clr-boxborder-box3: rgb(3, 103, 234);
   --clr-boxborder-box4: #0abced;

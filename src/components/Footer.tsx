@@ -6,9 +6,10 @@ import {
   faInstagram,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { Link } from 'react-router-dom';
 
 const FooterWrapper = styled.div`
-  background-image: linear-gradient(to right, #243949 0%, #517fa4 100%);
+  background: var(--clr-footer-bg);
 `;
 
 const FooterContainer = styled.div`
@@ -23,7 +24,6 @@ const FooterContainer = styled.div`
   }
   @media(max-width: 688px) {
     grid-template-columns: repeat(1, auto);
-    
   }
 `;
 
@@ -31,7 +31,14 @@ const Section = styled.div`
   > h2 {
     color: #fff;
     text-align: start;
+
+    @media(max-width: 688px) {
+      justify-content: center;
+      text-align: center;
+      font-size: 25px;
+    }
   }
+  
 
 `;
 
@@ -42,7 +49,7 @@ const SubFooter = styled.div`
   align-items: center;
   color: #8e8e9d;
   font-size: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
   padding-bottom: 15px;
   cursor: default;
   user-select: none;
@@ -50,6 +57,7 @@ const SubFooter = styled.div`
     margin: 0 5px;
     color: #cdcbcb;
   }
+  
 `;
 
 const Hr = styled.hr`
@@ -62,6 +70,12 @@ const Hr = styled.hr`
 const Title = styled.h2`
   margin-bottom: 10px;
   color: #fff;
+
+  @media(max-width: 688px) {
+      justify-content: center;
+      text-align: center;
+      font-size: 25px;
+  }
 `;
 
 const NewsSection = styled.div``;
@@ -92,6 +106,11 @@ const NewsRow = styled.div`
         &:hover{
             background: #636363;
         } 
+    }
+    @media(max-width: 688px) {
+      justify-content: center;
+      text-align: center;
+      font-size: 13px;
     }
 `;
 
@@ -125,6 +144,9 @@ const LinkRow = styled.div`
         }
       }
     }
+    @media(max-width: 688px) {
+      font-size: 13px;
+    }
   }
 
   .BrandsIcon {
@@ -139,23 +161,28 @@ const LinkRow = styled.div`
       }
     }
   }
+  
+  @media(max-width: 688px) {
+      justify-content: center;
+      text-align: center;
+    }
 `;
 
 const FooterObj = [
   {
     id: "section1",
     title: "Ayuda y Soporte 🖥️",
-    links: [
+    link: [
       {
         name: "Contacta con Nosotros",
-        link: "#",
+        link: "/AboutUs",
       },
     ],
   },
   {
     id: "section2",
     title: "Sobre Nosotros",
-    links: [
+    link: [
       {
         name: "Equipo",
         link: "#",
@@ -169,7 +196,7 @@ const FooterObj = [
   {
     id: "section3",
     title: "Siguenos en 👇🏼",
-    links: [
+    link: [
       {
         name: "Facebook",
         link: "https://www.facebook.es",
@@ -177,12 +204,12 @@ const FooterObj = [
       },
       {
         name: "Instagram",
-        link: "#",
+        link: "https://www.instagram.com/",
         icon: faInstagram,
       },
       {
         name: "Twitter",
-        link: "#",
+        link: "https://twitter.com/?lang=es",
         icon: faTwitter,
       },
     ],
@@ -196,7 +223,7 @@ const newObj = [
       {
         platform: "Twitter",
         icon: faTwitter,
-        news: "Vogue acaba de subir una exclusica a la sey colaboración de Rabanne con H&M.",
+        news: "Vogue acaba de subir una exclusiva de la nueva colaboración de Rabanne con H&M.",
         link: "#",
       },
       {
@@ -227,7 +254,7 @@ const newObj = [
         platform: "Twitter",
         icon: faTwitter,
         news: "Lefties y la colección de Navidad que tiene todo lo que querrás para estas fiestas.",
-        link: 'https://www.vogue.es/articulos/lefties-coleccion-navidad-2023-jersey-pijama-navideno',
+        link: "#",
       }
     ],
   },
@@ -244,13 +271,15 @@ function Footer() {
         {FooterObj.map((elem, i) => (
           <Section key={i}>
             <h2>{elem.title}</h2>
-            {elem.links.map((link, j) => (
-              <LinkRow key={j}>
+            {elem.link.map((link, j) => (
+            <Link to={link.link} key={j}>
+              <LinkRow >
                 <SocialIcon className="BrandsIcon">
                   <FontAwesomeIcon icon={link.icon} />
                 </SocialIcon>
                 <h4>{link.name}</h4>
               </LinkRow>
+            </Link>
             ))}
           </Section>
         ))}
@@ -267,8 +296,7 @@ function Footer() {
                         {newOne.news}
                     </h4> 
                     <Hr style={{margintop: '40px'}}></Hr>
-                </div>
-                               
+                </div>                     
                 ))}
             </NewsRow>
           </NewsSection>

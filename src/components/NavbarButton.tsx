@@ -1,19 +1,4 @@
 import styled from "styled-components";
-import React from 'react';
-
-function NavbarButton({ onClick }) {
-    return (
-        <ButtonNav onClick={onClick}>
-            <div className="icon nav-icon-5">
-                <span></span>
-                <span></span>    
-                <span></span>       
-            </div>
-        </ButtonNav>
-    );
-}
-
-export default NavbarButton
 
 const ButtonNav = styled.div`
     .nav-icon-5{
@@ -77,3 +62,19 @@ const ButtonNav = styled.div`
         top: 13px;
     }
 `;
+
+function NavbarButton({ onClick }) {
+    return (
+        <ButtonNav onClick={onClick}>
+            <div className="icon nav-icon-5">
+                <span></span>
+                <span></span>    
+                <span></span>       
+            </div>
+        </ButtonNav>
+    );
+}
+
+export default NavbarButton
+
+

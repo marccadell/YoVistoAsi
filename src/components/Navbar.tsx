@@ -32,8 +32,10 @@ const NavLogo = styled.div`
 `;
 
 const NavLogoImg = styled.img`
-  width: auto;
+  width: 180%;
   height: auto;
+  max-height: 50px;
+  max-width: 180%;
 `;
 
 const Menu = styled.div`
@@ -92,13 +94,13 @@ const items: MenuModel[] = [
 
 const Overlay = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
-  position: fixed; // Esto hace que el overlay sea fijo y cubra toda la pantalla
+  position: fixed; 
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5); // Color negro con opacidad
-  z-index: 10; // Asegúrate de que esto esté debajo de tu menú desplegable
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 10; 
 `;
 
 
@@ -114,7 +116,7 @@ function Navbar() {
       <NavContainer>
         <NavLogo className='Navlogo'>
               <NavLogoImg
-                src="/imgs/logo.png"
+                src="src/assets/img/logo.jpg"
                 alt="Logo"
                 className="logo-image"
               />
