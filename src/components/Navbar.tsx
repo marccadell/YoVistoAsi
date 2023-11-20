@@ -55,7 +55,6 @@ const Menu = styled.div`
       padding-right: 10px;
       flex-direction: column;
       align-items: center;
-      border: 2px red dashed;
     }
 `;
 
@@ -67,16 +66,24 @@ const MenuItem = styled.a`
   text-decoration: none;
 
   &:hover {
-    background: #252526;
+    background: #8585859a;
+    @media (min-width: 768px) {
+      background: none;
+    }
   }
 `;
 
 const StyledLink = styled(Link)`
-  color: white;
+  color: #eaeaea;
   text-decoration: none;
 
   &:hover {
-    color: #ccc;
+    color: #464646;
+    font-weight: bold;
+    @media (min-width: 768px) {
+      color: #ffffff;
+      font-weight: bolder;
+    }
   }
 `;
 

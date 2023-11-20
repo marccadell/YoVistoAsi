@@ -6,7 +6,6 @@ const CarouselContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border: 2px black dashed;
     padding: 0 0 60px;
 `;
 
@@ -25,7 +24,6 @@ const CarouselImg = styled.img`
 const CarouselButtonContainer = styled.div`
     display: flex;
     align-content: center;
-    border: 2px black dashed;
     flex-direction: row;
     margin-top: 15px;
 `;

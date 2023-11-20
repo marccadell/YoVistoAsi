@@ -10,9 +10,18 @@ const BgContainer = styled.div`
   background-image: url("src/assets/img/bg-homepage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  box-shadow: 0px 10px 30px 7px rgb(30 30 30/70%);
   height: calc(130vh - 69px);
   padding: 20px;
 `;
+
+const BgContainer_secondary = styled.div`
+  background-image: url("src/assets/img/fondo_container.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 1px;
+`;
+
 
 const Container = styled.div`
   display: flex;
@@ -25,12 +34,9 @@ const Container = styled.div`
   margin: 30px auto 0px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.8);
-  z-index: 999;
-  // Box Border
-  border: 1px black solid;
-  border-radius: 30px;
-  border-color: var(--clr-boxborder-box1);
   box-shadow: 0 10px 30px -10px rgb(30 30 30 / 70%);
+  border-radius: 30px;
+  border: 0.2px solid black;
 
   @media screen and (max-width: 960px) and (min-width: 760px) {
         position: relative;
@@ -48,7 +54,7 @@ const Container = styled.div`
 
     @media screen and (max-width: 728px) and (min-width: 604px) {
         position: relative;
-        padding: 100px 50px 60px;
+        padding: 100px 40px 40px;
         max-width: 1100px;
         margin: 30px auto;
     }
@@ -59,11 +65,6 @@ const Container = styled.div`
         max-width: 1100px;
         margin: auto;
     }
-    
-
-
-    
-
 `;
 
 const Container_secondary = styled.div`
@@ -72,10 +73,33 @@ const Container_secondary = styled.div`
   text-align: center;
   padding: 120px 100px;
   margin: 30px auto 30px;
-  height: calc(200vh - 69px);
+  height: calc(230vh - 69px); // Aumentar Container para agregar más contenido
   max-width: 1140px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 10px 5px 5px rgb(30 30 30/40%);
+  border-top: 0.1px black solid;
+  border-radius: 10px;
+
+  @media screen and (max-width: 1188px) and (min-width: 760px) {
+        position: relative;
+        max-width: 700px;
+        height: calc(240vh - 69px);
+    }
+
+  @media screen and (max-width: 760px) and (min-width: 600px) {
+      position: relative;
+      max-width: 550px;
+      height: calc(270vh - 69px);
+      margin: 70px auto 70px auto;
+  }
+
+  @media screen and (max-width: 600px) and (min-width: 500px) {
+      position: relative;
+      max-width: 510px;
+      height: calc(275vh - 69px);
+      margin: 70px auto 70px auto;
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -89,11 +113,11 @@ const LogoImg = styled.img`
 `;
 
 const Title = styled.h1`
-  font-weight: 300;
-  font-size: 3.5rem;
-  margin: 16px 0;
+  font-weight: 300, bold;
+  font-size: 4.5rem;
+  margin: 12px 0;
   // Box Border
-  border: 2px dashed;
+  {/*border: 2px dashed; */}
 `;
 
 const SubTitle = styled.h2`
@@ -101,10 +125,39 @@ const SubTitle = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 48px;
   // Box Border
-  border: 2px dashed;
-  border-color: var(--clr-boxborder-box3);
+  {/*border: 2px dashed;
+  border-color: var(--clr-boxborder-box3); */}
 `;
 
+const TestimonialsSection = styled.section``;
+
+const TestimonialsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  justify-content: center;
+  @media (max-width: 1188px) {
+    flex-direction: column;
+  }
+`;
+
+// Barra Separadora de Containers
+const Hr = styled.hr`
+  width: 70%;
+  margin: 30px auto 40px auto;
+  border: none;
+  border-top: 3px solid #534d4d51;
+`;
+
+// Carousel Imagenes declaradas aquí
+const images = [
+  "carousel2.jpg",
+  "carousel3.jpg",
+  "carousel4.jpg",
+  "carousel5.jpg",
+];
+
+// Icono Social Href Styled
 const Social = styled.div`
   // Box Border
   border: 2px dashed;
@@ -114,7 +167,6 @@ const Social = styled.div`
 const SocialLink = styled.a`
   text-decoration: none;
   margin-right: 16px;
-
   &:last-child {
     margin-right: 0;
   }
@@ -124,25 +176,6 @@ const SocialIcon = styled.em`
   color: #141414;
   padding: 8px;
   font-size: 48px;
-`;
-
-const TestimonialsSection = styled.section``;
-
-const TestimonialsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  @media (max-width: 755px) {
-    flex-direction: column;
-  }
-`;
-
-const Hr = styled.hr`
-  width: 70%;
-  margin: auto;
-  border: none;
-  border-top: 3px solid #534d4d51;
 `;
 
 interface SocialModel {
@@ -155,19 +188,10 @@ const links: SocialModel[] = [
   { name: "Github", icon: faGithub, url: "https://github.com/marccadell" },
 ];
 
-// Carousel Imagenes declaradas aquí
-const images = [
-  "carousel2.jpg",
-  "carousel3.jpg",
-  "carousel4.jpg",
-  "carousel5.jpg",
-];
 
 export function Home() {
   return (
     <HomeWrapper>
-
-    
     <BgContainer>
       <Container>
         <LogoContainer>
@@ -189,14 +213,23 @@ export function Home() {
         </SubTitle>
       </Container>
       </BgContainer>
+      <BgContainer_secondary>
       <Container_secondary>
         <Title>
           Nuestros <b>Outfits</b>
         </Title>
-        <SubTitle>Aquí te mostramos nuestras mejores inspiraciones 👇🏼</SubTitle>
+        <SubTitle>
+          Descubre la excelencia en moda con nuestros exclusivos outfits. 
+          En <b>YoVistoAsí</b>, nos enorgullece ofrecerte las tendencias más destacadas y 
+          los conjuntos más únicos. Nuestro compromiso con la calidad y la 
+          innovación nos distingue como líderes en el mundo de la moda. 
+          Explora nuestra galería y sumérgete en un mundo de estilo incomparable.
+        </SubTitle>
         {/* Galeria de imagenes del Home */}
         <Carousel images={images} autoPlay={true} showButtons={true} />
-        <Social>
+        
+        {/* ICONO HREF */}
+        {/*<Social>
           {links.map((link, key) => (
             <SocialLink
               key={`social-link-${key}`}
@@ -210,7 +243,8 @@ export function Home() {
               </SocialIcon>
             </SocialLink>
           ))}
-        </Social>
+          </Social>*/}
+
         <Hr></Hr>
         {/* Sección Testimonios */}
         <Title>
@@ -234,7 +268,7 @@ export function Home() {
           {/* Agregar más testimonios aquí */}
         </TestimonialsSection>
       </Container_secondary>
-    
+      </BgContainer_secondary>
     </HomeWrapper>
   );
 }
