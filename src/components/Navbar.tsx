@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, { useState } from 'react';
 import NavbarButton from './NavbarButton';
 import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const NavContainer = styled.nav`
@@ -28,11 +29,11 @@ const NavContainer = styled.nav`
 const NavLogo = styled.div`
   display: flex;
   justify-content: flex-start;
-  padding-left: 40px;
+
 `;
 
 const NavLogoImg = styled.img`
-  width: 180%;
+  width: 100%;
   height: auto;
   max-height: 50px;
   max-width: 180%;
@@ -71,20 +72,25 @@ const MenuItem = styled.a`
       background: none;
     }
   }
-`;
 
-const StyledLink = styled(Link)`
-  color: #eaeaea;
-  text-decoration: none;
+  .NavLinks { // Color de los links
+    color: #eaeaea;
+    text-decoration: none;
 
-  &:hover {
-    color: #464646;
-    font-weight: bold;
-    @media (min-width: 768px) {
-      color: #ffffff;
-      font-weight: bolder;
+    &:hover {
+      color: #fafafa;
+      font-weight: bold;
+        @media (min-width: 768px) {
+          color: #ffffff;
+          font-weight: bolder;
+        }
     }
   }
+
+`;
+
+const StyledNavLink = styled(NavLink)`
+  margin-left: 40px;
 `;
 
 interface MenuModel {
@@ -93,8 +99,8 @@ interface MenuModel {
 }
 
 const items: MenuModel[] = [
-  { name: "Favoritos", link: "/Home" },
-  { name: "Iniciar Sesión", link: "/aboutme" },
+  { name: "Home", link: "/Home" },
+  { name: "Log In", link: "/Login" },
   { name: "Crear Outfit", link: "/projects" },
   { name: "Contacta", link: "/contact" },
 ];
@@ -121,19 +127,25 @@ function Navbar() {
   return (
     <>
       <NavContainer>
-        <NavLogo className='Navlogo'>
-              <NavLogoImg
-                src="src/assets/img/logo.jpg"
-                alt="Logo"
-                className="logo-image"
-              />
-          </NavLogo>
-        <Menu isOpen={isOpen}>
+        <StyledNavLink to="/">
+          <NavLogo className='Navlogo'>
+                <NavLogoImg
+                  src="src/assets/img/logo.jpg"
+                  alt="Logo"
+                  className="logo-image"
+                />
+            </NavLogo>
+        </StyledNavLink>
+          <Menu isOpen={isOpen}>
           {items.map((item, key) => (
-            <MenuItem key={`menu-item-${key}`} className='NavLinks'>
-              <StyledLink to={item.link} onClick={() => setIsOpen(false)}>
+            <MenuItem key={`menu-item-${key}`}>
+              <NavLink 
+                to={item.link} 
+                onClick={() => setIsOpen(false)}
+                className='NavLinks'
+              >
                 {item.name}
-              </StyledLink>
+              </NavLink>
             </MenuItem>
           ))}
         </Menu>

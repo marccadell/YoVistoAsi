@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Carousel from "../components/Carousel";
 import Testimonial from "../components/Testimonials";
 
@@ -21,7 +19,6 @@ const BgContainer_secondary = styled.div`
   background-repeat: no-repeat;
   padding: 1px;
 `;
-
 
 const Container = styled.div`
   display: flex;
@@ -157,39 +154,8 @@ const images = [
   "carousel5.jpg",
 ];
 
-// Icono Social Href Styled
-const Social = styled.div`
-  // Box Border
-  border: 2px dashed;
-  border-color: var(--clr-boxborder-box4);
-`;
 
-const SocialLink = styled.a`
-  text-decoration: none;
-  margin-right: 16px;
-  &:last-child {
-    margin-right: 0;
-  }
-`;
-
-const SocialIcon = styled.em`
-  color: #141414;
-  padding: 8px;
-  font-size: 48px;
-`;
-
-interface SocialModel {
-  name: string;
-  icon: string;
-  url: string;
-}
-
-const links: SocialModel[] = [
-  { name: "Github", icon: faGithub, url: "https://github.com/marccadell" },
-];
-
-
-export function Home() {
+function Home() {
   return (
     <HomeWrapper>
     <BgContainer>
@@ -226,25 +192,7 @@ export function Home() {
           Explora nuestra galería y sumérgete en un mundo de estilo incomparable.
         </SubTitle>
         {/* Galeria de imagenes del Home */}
-        <Carousel images={images} autoPlay={true} showButtons={true} />
-        
-        {/* ICONO HREF */}
-        {/*<Social>
-          {links.map((link, key) => (
-            <SocialLink
-              key={`social-link-${key}`}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={link.name}
-            >
-              <SocialIcon>
-                <FontAwesomeIcon icon={link.icon} />
-              </SocialIcon>
-            </SocialLink>
-          ))}
-          </Social>*/}
-
+        <Carousel images={images} autoPlay={true} showButtons={true} /> 
         <Hr></Hr>
         {/* Sección Testimonios */}
         <Title>
