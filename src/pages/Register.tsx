@@ -104,21 +104,21 @@ const InputContainer = styled.div`
     flex-direction: column;
     justify-content: center;
 
-    &:hover ${Instruction1}, &:focus-within ${Instruction1} {
+    &:hover ${InstructionUser}, &:focus-within ${InstructionUser} {
         display: flex;
         .icon-instruccion {
             margin-right: 4px;
         }
     }
 
-    &:hover ${Instruction2}, &:focus-within ${Instruction2} {
+    &:hover ${InstructionPass}, &:focus-within ${InstructionPass} {
         display: flex;
         .icon-instruccion {
             margin-right: 4px;
         }
     }
 
-    &:hover ${Instruction3}, &:focus-within ${Instruction3} {
+    &:hover ${InstructionConfirmPass}, &:focus-within ${InstructionConfirmPass} {
         display: flex;
         .icon-instruccion {
             margin-right: 4px;
