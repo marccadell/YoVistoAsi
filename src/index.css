@@ -6,11 +6,18 @@
   font-size: 62.5%;
 
   --clr-primary-navbar: #004643;
-  --clr-primary: #97d789;
+  --clr-primary: #007bff;
   --clr-secondary: #f8f7ed;
   --clr-secondary-box: #f8f7ed;
-  --clr-primary-text: #0f3433;
+  --clr-primary-text: #333;
   --clr-secondary-text: #abd1c6;
+  
+  --clr-error: #dc3545;
+  --clr-success: #28a745;
+
+  --clr-form-primary: #007bff;
+  --clr-form-bg: #f8f9fa;
+  
   --clr-btn: #79cb67;
   --clr-btn-navbar: #fffffe;
   --clr-btn-text: #001e1d;

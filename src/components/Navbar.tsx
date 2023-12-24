@@ -100,8 +100,8 @@ interface MenuModel {
 
 const items: MenuModel[] = [
   { name: "Home", link: "/Home" },
-  { name: "Log In", link: "/Login" },
-  { name: "Crear Outfit", link: "/projects" },
+  { name: "Sign Up", link: "/Register" },
+  { name: "Log in", link: "/Login" },
   { name: "Contacta", link: "/contact" },
 ];
 
