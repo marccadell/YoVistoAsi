@@ -26,7 +26,7 @@ const Container = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding: 120px 90px;
+  padding: 60px 30px;
   max-width: 1100px;
   margin: 30px auto 0px;
   box-sizing: border-box;
@@ -58,9 +58,10 @@ const Container = styled.div`
 
     @media screen and (max-width: 604px) {
         position: relative;
-        padding: 50px 30px 0;
-        max-width: 1100px;
+        padding: 50px 10px;
+        max-width: 1000px;
         margin: auto;
+        font-size: 20px;
     }
 `;
 
@@ -81,20 +82,20 @@ const Container_secondary = styled.div`
   @media screen and (max-width: 1188px) and (min-width: 760px) {
         position: relative;
         max-width: 700px;
-        height: calc(240vh - 69px);
+        height: calc(270vh - 69px);
     }
 
   @media screen and (max-width: 760px) and (min-width: 600px) {
       position: relative;
       max-width: 550px;
-      height: calc(270vh - 69px);
+      height: calc(290vh - 69px);
       margin: 70px auto 70px auto;
   }
 
   @media screen and (max-width: 600px) and (min-width: 500px) {
       position: relative;
       max-width: 510px;
-      height: calc(275vh - 69px);
+      height: calc(310vh - 69px);
       margin: 70px auto 70px auto;
   }
 `;
@@ -113,17 +114,34 @@ const Title = styled.h1`
   font-weight: 300, bold;
   font-size: 4.5rem;
   margin: 12px 0;
-  // Box Border
-  {/*border: 2px dashed; */}
 `;
 
-const SubTitle = styled.h2`
+const SubTitleContainer = styled.h2`
   font-weight: 300;
   font-size: 2.5rem;
   margin-bottom: 48px;
   // Box Border
   {/*border: 2px dashed;
   border-color: var(--clr-boxborder-box3); */}
+
+  @media screen and (max-width: 1188px) and (min-width: 604px) {
+      font-size: 22px;
+  }
+
+  @media screen and (max-width: 760px) and (min-width: 600px) {
+      font-size: 22px;
+  }
+
+  @media screen and (max-width: 604px) {
+      font-size: 22px;
+  }
+`;
+
+const SubTitle = styled.h2`
+  font-weight: 300;
+  font-size: 2.5rem;
+  margin-bottom: 48px;
+
 `;
 
 const TestimonialsSection = styled.section``;
@@ -163,20 +181,14 @@ function Home() {
         <LogoContainer>
           <LogoImg className="logo_img" src="src/assets/img/logo.jpg"></LogoImg>
         </LogoContainer>
-        <SubTitle>
-          En YoVistoAsí, nuestra pasión es{" "}
-          <b>ayudarte a brillar en cada ocasión.</b> Ofrecemos asesoría de moda
-          personalizada que se adapta a tus <b>gustos</b>, tu{" "}
-          <b>estilo de vida</b> y los <b>eventos</b> que te importan. Desde
-          fiestas elegantes hasta reuniones informales,{" "}
-          <b>
-            nuestro equipo de expertos en moda te guiará para crear outfits
-            impresionantes
-          </b>{" "}
-          que reflejen tu personalidad y te hagan sentir seguro y radiante.
-          Descubre cómo podemos llevarte al siguiente nivel de estilo y
-          confianza. <b>¡Comienza tu viaje de moda con nosotros hoy mismo!</b>
-        </SubTitle>
+        <SubTitleContainer>
+          En YoVistoAsí, nuestra pasión es ayudarte a brillar en cada ocasión. Ofrecemos asesoría de moda
+          personalizada que se adapta a tus gustos, tu estilo de vida y los eventos que te importan. Desde
+          fiestas elegantes hasta reuniones informales, nuestro equipo de expertos en moda te guiará para 
+          crear outfits impresionantes que reflejen tu personalidad y te hagan sentir seguro y radiante.
+          Descubre cómo podemos llevarte al siguiente nivel de estilo y confianza. <b>¡Comienza tu 
+          viaje de moda con nosotros hoy mismo!</b>
+        </SubTitleContainer>
       </Container>
       </BgContainer>
       <BgContainer_secondary>

@@ -1,6 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
 
 :root {
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   line-height: 1.4;
   font-weight: 400;
   font-size: 62.5%;
@@ -29,9 +30,8 @@
   --clr-box-bg: #fffffe;
   --clr-footer-bg: rgb(0, 0, 0);
   --clr-navbar-bg: black;
-  --clr-navbartoogle-bg: rgb(160, 159, 159);
-  --clr-boxborder-box3: rgb(3, 103, 234);
-  --clr-boxborder-box4: #0abced;
+  --clr-navbartoogle-bg: rgba(179, 179, 179, 0.87);
+
 
 
   --clr-hover-text: #fbdd74;
@@ -49,6 +49,10 @@
   --clr-black: #000;
 }
 
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -60,10 +64,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {

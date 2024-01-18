@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from 'react';
 import NavbarButton from './NavbarButton';
-import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 
@@ -33,10 +32,9 @@ const NavLogo = styled.div`
 `;
 
 const NavLogoImg = styled.img`
-  width: 100%;
+  width: auto;
   height: auto;
   max-height: 50px;
-  max-width: 180%;
 `;
 
 const Menu = styled.div`
@@ -102,7 +100,7 @@ const items: MenuModel[] = [
   { name: "Home", link: "/Home" },
   { name: "Sign Up", link: "/Register" },
   { name: "Log in", link: "/Login" },
-  { name: "Contacta", link: "/contact" },
+  { name: "Acerca de", link: "/TermsAndConditions" },
 ];
 
 const Overlay = styled.div`

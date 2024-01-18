@@ -175,7 +175,11 @@ const FooterObj = [
     link: [
       {
         name: "Contacta con Nosotros",
-        link: "/AboutUs",
+        link: "/Contact",
+      },
+      {
+        name: "Términos y Aviso Legal",
+        link: "/TermsAndConditions",
       },
     ],
   },
@@ -185,11 +189,11 @@ const FooterObj = [
     link: [
       {
         name: "Equipo",
-        link: "#",
+        link: "/Team",
       },
       {
         name: "Nuestro Objetivo",
-        link: "#",
+        link: "/Objective",
       },
     ],
   },

@@ -7,12 +7,19 @@ const Footer = lazy(() => import("./components/Footer"));
 const Register = lazy(() => import("./pages/Register"));
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Team = lazy(() => import("./pages/Team"));
+
 
 import { requireLoggedOut } from "./Guards/RouteGuard";
 
 import { ToastContainer } from "react-toastify";
-import ScrollTop from "./pages/ScrollTop";
+import ScrollTop from "./components/ScrollTop";
 import Spinner from "./components/Spinner";
+import React from 'react';
+import Objective from './pages/Objective';
+
 
 function App() {
   return (
@@ -25,10 +32,17 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Register" element={<Register />} />
-        <Route
+        {/*<Route
               path="/Login"
               element={requireLoggedOut() ? <Login /> : <Navigate to="/Login" />}
-            />
+        /> */}
+        <Route path="/Login" element={<Login />} />
+
+        
+        <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/Team" element={<Team />} />
+        <Route path="/Objective" element={<Objective />} />
       </Routes>
 
       <Footer />
