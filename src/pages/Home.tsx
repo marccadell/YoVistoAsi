@@ -58,9 +58,9 @@ const Container = styled.div`
 
     @media screen and (max-width: 604px) {
         position: relative;
-        padding: 50px 10px;
+        padding: 20px;
         max-width: 1000px;
-        margin: auto;
+        margin: 30px auto;
         font-size: 20px;
     }
 `;
@@ -103,6 +103,7 @@ const Container_secondary = styled.div`
 const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin: 30px;
 `;
 
 const LogoImg = styled.img`
@@ -120,15 +121,13 @@ const SubTitleContainer = styled.h2`
   font-weight: 300;
   font-size: 2.5rem;
   margin-bottom: 48px;
-  // Box Border
-  {/*border: 2px dashed;
-  border-color: var(--clr-boxborder-box3); */}
+  margin: 10px;
 
-  @media screen and (max-width: 1188px) and (min-width: 604px) {
+  @media screen and (max-width: 1188px) and (min-width: 760px) {
       font-size: 22px;
   }
 
-  @media screen and (max-width: 760px) and (min-width: 600px) {
+  @media screen and (max-width: 760px) and (min-width: 604px) {
       font-size: 22px;
   }
 
@@ -141,7 +140,6 @@ const SubTitle = styled.h2`
   font-weight: 300;
   font-size: 2.5rem;
   margin-bottom: 48px;
-
 `;
 
 const TestimonialsSection = styled.section``;
@@ -186,8 +184,8 @@ function Home() {
           personalizada que se adapta a tus gustos, tu estilo de vida y los eventos que te importan. Desde
           fiestas elegantes hasta reuniones informales, nuestro equipo de expertos en moda te guiará para 
           crear outfits impresionantes que reflejen tu personalidad y te hagan sentir seguro y radiante.
-          Descubre cómo podemos llevarte al siguiente nivel de estilo y confianza. <b>¡Comienza tu 
-          viaje de moda con nosotros hoy mismo!</b>
+          Descubre cómo podemos llevarte al siguiente nivel de estilo y confianza. 
+          <br/><b>¡Comienza tu viaje de moda con nosotros hoy mismo!</b>
         </SubTitleContainer>
       </Container>
       </BgContainer>

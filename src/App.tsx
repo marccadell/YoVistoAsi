@@ -1,5 +1,5 @@
-import { Navigate, Routes, Route, BrowserRouter as Router } from 'react-router-dom';
-import { Fragment, lazy, Suspense } from "react";
+import { Navigate, Routes, Route, BrowserRouter as Router, useLocation } from 'react-router-dom';
+import { Fragment, lazy, Suspense, useEffect } from "react";
 import './App.css'
 
 const Navbar = lazy(() => import("./components/Navbar"));
@@ -10,22 +10,27 @@ const Login = lazy(() => import("./pages/Login"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Team = lazy(() => import("./pages/Team"));
+const ScrollTop = lazy(() => import("./components/ScrollTop"));
+const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
 
 
 import { requireLoggedOut } from "./Guards/RouteGuard";
 
 import { ToastContainer } from "react-toastify";
-import ScrollTop from "./components/ScrollTop";
+
 import Spinner from "./components/Spinner";
-import React from 'react';
+
+
 import Objective from './pages/Objective';
 
 
 function App() {
+
   return (
     <>
     <ScrollTop/>
     <Router>
+    <ScrollToTop/>
     <Fragment>
       <Suspense fallback={<Spinner />}>
       <Navbar />
@@ -50,6 +55,8 @@ function App() {
       </Suspense>
     </Fragment>
     </Router>
+
+    
     </>
   );
 }
