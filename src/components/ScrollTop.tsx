@@ -27,15 +27,13 @@ const ScrollTop: React.FC = () => {
     };
 
     return (
-        <>
-            <div className="top-to-btm">
-                {showTopBtn && (
-                    <button className="icon-position icon-style" onClick={goToTop}>
-                        <FaArrowTurnUp className="icon" />
-                    </button>
-                )}
-            </div>
-        </>
+        <div className={`top-to-btm ${showTopBtn ? 'visible' : ''}`}>
+            {showTopBtn && (
+                <button className="icon-position icon-style" onClick={goToTop}>
+                    <FaArrowTurnUp className="icon" />
+                </button>
+            )}
+        </div>
     );
 };
 
