@@ -71,7 +71,7 @@ const Container_secondary = styled.div`
   text-align: center;
   padding: 120px 100px;
   margin: 30px auto 30px;
-  height: calc(230vh - 69px); // Aumentar Container para agregar más contenido
+  height: auto; // Aumentar Container para agregar más contenido
   max-width: 1140px;
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 1);
@@ -82,20 +82,20 @@ const Container_secondary = styled.div`
   @media screen and (max-width: 1188px) and (min-width: 760px) {
         position: relative;
         max-width: 700px;
-        height: calc(270vh - 69px);
+        height: auto;
     }
 
   @media screen and (max-width: 760px) and (min-width: 600px) {
       position: relative;
       max-width: 550px;
-      height: calc(290vh - 69px);
+      height: auto;
       margin: 70px auto 70px auto;
   }
 
   @media screen and (max-width: 600px) and (min-width: 500px) {
       position: relative;
       max-width: 510px;
-      height: calc(310vh - 69px);
+      height: auto;
       margin: 70px auto 70px auto;
   }
 `;
