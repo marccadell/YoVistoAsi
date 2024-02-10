@@ -9,7 +9,7 @@ const BgContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: 0px 10px 30px 7px rgb(30 30 30/70%);
-  height: calc(130vh - 69px);
+  min-height: 700px;
   padding: 20px;
 `;
 
@@ -37,28 +37,28 @@ const Container = styled.div`
 
   @media screen and (max-width: 960px) and (min-width: 760px) {
         position: relative;
-        padding: 100px 70px 70px;
+        padding: auto;
         max-width: 1100px;
         margin: 30px 0 auto;
     }
 
     @media screen and (max-width: 760px) and (min-width: 728px) {
         position: relative;
-        padding: 100px 70px 70px;
+        padding: auto;
         max-width: 1100px;
         margin: 30px 0 auto;
     }
 
     @media screen and (max-width: 728px) and (min-width: 604px) {
         position: relative;
-        padding: 100px 40px 40px;
+        padding: auto;
         max-width: 1100px;
         margin: 30px auto;
     }
 
     @media screen and (max-width: 604px) {
         position: relative;
-        padding: 20px;
+        padding: auto;
         max-width: 1000px;
         margin: 30px auto;
         font-size: 20px;
