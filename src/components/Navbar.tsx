@@ -100,7 +100,7 @@ const items: MenuModel[] = [
   { name: "Home", link: "/Home" },
   { name: "Sign Up", link: "/Register" },
   { name: "Log in", link: "/Login" },
-  { name: "Acerca de", link: "/TermsAndConditions" },
+  { name: "Crear Outfit", link: "/CreateOutfit" },
 ];
 
 const Overlay = styled.div`
