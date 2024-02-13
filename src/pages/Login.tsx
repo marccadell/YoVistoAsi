@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 
 interface LoginInputs {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -13,7 +13,7 @@ const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 520px;
+  height: 760px;
 `;
 
 const LoginTitle = styled.h1`
@@ -25,12 +25,13 @@ const LoginTitle = styled.h1`
 
 const LoginLabel = styled.label`
   font-weight: bold;
+  font-size: 13px;
 `;
 
 const LoginForm = styled.form`
   background-color: #f8f8f8;
   border-radius: 10px;
-  padding: 20px;
+  padding: 50px 30px 50px 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   max-width: 400px;
   width: 100%;
@@ -71,16 +72,16 @@ const SubmitButton = styled.button`
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 18px;
   cursor: pointer;
 `;
 
 const NoRegistered = styled.p`
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
     color: var(--clr-form-primary);
-    margin-top: 15px;
+    margin-top: 25px;
 `;
 
 const BgContainer = styled.div`
@@ -92,7 +93,7 @@ const BgContainer = styled.div`
 
 function Login() {
     const [inputs, setInputs] = useState<LoginInputs>({
-        username: "",
+        email: "",
         password: "",
     });
 
@@ -133,13 +134,13 @@ function Login() {
     return (
         <BgContainer>
         <LoginContainer>
-            <LoginForm autoComplete="off" onSubmit={handleSubmit}>
+            <LoginForm autoComplete="on" onSubmit={handleSubmit}>
             <LoginTitle>Iniciar Sesión</LoginTitle>
                 <InputBox>
-                    <LoginLabel>Username</LoginLabel>
+                    <LoginLabel>Correo Electrónico</LoginLabel>
                     <input
-                        type="text"
-                        name="username"
+                        type="email"
+                        name="email"
                         onChange={handleChange}
                         required
                     />
@@ -158,7 +159,7 @@ function Login() {
                 </ButtonBox>
                 
                 <NoRegistered>
-                    <Link to="/Register">No tienes cuenta? <b>Registrate aquí.</b></Link>
+                    No tienes cuenta? <Link to="/Register">Registrate aquí</Link>
                 </NoRegistered>
             </LoginForm>
         </LoginContainer>

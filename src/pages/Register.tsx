@@ -48,10 +48,11 @@ const RegisterForm = styled.form`
 
 // Etiquetas
 const Label = styled.label`
-    font-weight: 600;
+    font-weight: bold;
     font-size: 13px;
     margin: 3px 0 7px 0;
 `;
+
 
 // Instrucciones del input email
 const InstructionEmail = styled.p`
@@ -183,21 +184,6 @@ const Register: React.FC = () => {
         }
     };
 
-{/*
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-            await createUserWithEmailAndPassword(auth as Auth, email, password);
-            // Redirigir a la página de tareas después del registro
-            navigate('/');
-        } catch (error) {
-            console.error("Error al crear la cuenta: ", error.message);
-            // Aquí puedes manejar el error, como mostrar un mensaje al usuario
-        }
-    };
-*/}
-
-
     return (
         <BgContainer>
             <RegisterSection>
@@ -230,8 +216,7 @@ const Register: React.FC = () => {
                             <FontAwesomeIcon className="icon-instruccion" icon={faInfoCircle} />
                                 De 8 a 24 caracteres.<br />
                                 Debe incluir letras mayúsculas y minúsculas, un número y un caracter
-                                especial.
-                                
+                                especial. 
                         </InstructionPass>
                     </InputContainer>
                     <InputContainer>
@@ -272,8 +257,7 @@ const Register: React.FC = () => {
                             placeholder="Indique su Género (Opcional)"
                         />
                     </InputContainer>
-
-                    
+                            
                     <ButtonBox><Button type="submit">Registrar</Button></ButtonBox>
                     <AlreadyRegistered>
                         ¿Ya tienes una cuenta? <Link to="/Login">Iniciar sesión</Link>
@@ -287,3 +271,18 @@ const Register: React.FC = () => {
 };
 
 export default Register;
+
+
+{/*
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            await createUserWithEmailAndPassword(auth as Auth, email, password);
+            // Redirigir a la página de tareas después del registro
+            navigate('/');
+        } catch (error) {
+            console.error("Error al crear la cuenta: ", error.message);
+            // Aquí puedes manejar el error, como mostrar un mensaje al usuario
+        }
+    };
+*/}
