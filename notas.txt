@@ -1,3 +1,11 @@
+    CONSULTAS CHATGPT:
+
+    CREATEOUTFIT: https://chat.openai.com/share/f432634d-20aa-4381-bfea-976eacff45b8
+    
+
+
+
+
 // Register.tsx
 
 import { useRef, useState, useEffect } from "react";
