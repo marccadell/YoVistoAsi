@@ -11,8 +11,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
-  margin-bottom: 100px;
+  margin: 10px 20px 100px 20px;
 `;
 
 const SectionTitle = styled.h1`
@@ -28,10 +27,11 @@ const OutfitCreatorContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr; // Ajusta según tus necesidades, por ejemplo, selector y preview con proporciones específicas
   gap: 20px; // Espacio entre los elementos del grid
-  width: 100%;
-  margin: auto;
   background-color: #f9f9f9; // Fondo claro
-  padding: 20px;
+  width: 90%;
+  padding: 50px 20px 50px 20px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+  
 
   @media (max-width: 920px) {
     grid-template-columns: 1fr; // Cambia a una sola columna en pantallas pequeñas
