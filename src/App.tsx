@@ -8,6 +8,7 @@ const Register = lazy(() => import("./pages/Register"));
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const CreateOutfit = lazy(() => import("./pages/CreateOutfit"));
+const GenerateOutfit = lazy(() => import("./pages/GenerateOutfit"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Team = lazy(() => import("./pages/Team"));
@@ -44,6 +45,7 @@ function App() {
         /> */}
         <Route path="/Login" element={<Login />} />
         <Route path="/CreateOutfit" element={<CreateOutfit />} />
+        <Route path="/GenerateOutfit" element={<GenerateOutfit />} />
         
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         <Route path="/Contact" element={<Contact />} />

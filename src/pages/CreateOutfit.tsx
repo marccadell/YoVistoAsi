@@ -11,7 +11,13 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 20px 100px 20px;
+  padding: 40px 60px 150px 60px;
+`;
+
+const BgContainer = styled.div`
+  background-image: url("src/assets/img/bg-createoutfit.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 const SectionTitle = styled.h1`
@@ -102,6 +108,22 @@ const StyledInput = styled.input`
     border-color: #007bff;
   }
 `;
+
+const StyledInputSelect = styled.select`
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+`;
+
+const StyledInputPosition = styled.div`
+  position: relative;
+`;
+
 
 // Estilo del botón
 const StyledButton = styled.button`
@@ -277,125 +299,180 @@ const CreateOutfit = () => {
 
 
   return (
-    <PageContainer>
-      <SectionTitle>Creador de Outfits</SectionTitle>
-      <OutfitCreatorContainer>
-      <CustomizationContainer>
-          <h2 style={{ textAlign: 'center'}}>Introduce una Prenda</h2>
-          <FormContainer onSubmit={handleSubmit}>
-            <StyledInput
-              type="text"
-              value={outfitPreview.nombre}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, nombre: e.target.value })}
-              placeholder="Nombre"
-            />
-            <StyledInput
-              type="text"
-              value={outfitPreview.tipoPrenda}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, tipoPrenda: e.target.value })}
-              placeholder="Tipo de Prenda"
-            />
-            <StyledInput
-              type="text"
-              value={outfitPreview.tipoEvento}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, tipoEvento: e.target.value })}
-              placeholder="Tipo de Evento"
-            />
-            <StyledInput
-              type="text"
-              value={outfitPreview.tamaño}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, tamaño: e.target.value })}
-              placeholder="Tamaño"
-            />
-            <StyledInput
-              type="text"
-              value={outfitPreview.color}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, color: e.target.value })}
-              placeholder="Color"
-            />
-            <StyledInput
-              type="text"
-              value={outfitPreview.marca}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, marca: e.target.value })}
-              placeholder="Marca"
-            />
-            <StyledInput
-              type="text"
-              value={outfitPreview.genero}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, genero: e.target.value })}
-              placeholder="Género"
-            />
-            <StyledInput
-              type="text"
-              value={outfitPreview.temporada}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, temporada: e.target.value })}
-              placeholder="Temporada"
-            />
-            <StyledInput
-              type="text"
-              value={outfitPreview.imagenUrl}
-              onChange={(e) => setOutfitPreview({ ...outfitPreview, imagenUrl: e.target.value })}
-              placeholder="URL de la Imagen"
-            />
-            <StyledButton type="submit" style={{ marginTop: '20px' }}>Agregar Prenda</StyledButton>
-          </FormContainer>
-        </CustomizationContainer>
-        
-        <PreviewContainer>
-          <h3>Vista Previa del Outfit</h3>
-          <PreviewGrid>
-            {outfitPreviews.map((prenda, index) => (
-              <PrendaPreviewItem key={index} onClick={() => abrirModal(prenda)}>
-                <PreviewImage src={prenda.imagenUrl} alt="Prenda" />
-                <div>
-                  <p style={{ fontWeight: 'bold', fontSize: '13px' }}>{prenda.nombre}</p>
-                  <p>{prenda.marca}</p>
-                  <p>Tipo: {prenda.tipoPrenda}</p>
-                  <p>Evento: {prenda.tipoEvento}</p>
-                </div>
-                <button onClick={(e) => eliminarPrenda(e, index)} style={{ border: 'none', background: 'none', cursor: 'pointer' }}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </button>
-              </PrendaPreviewItem>
-            ))}
-          </PreviewGrid>
-        </PreviewContainer>
+    <BgContainer>
+      <PageContainer>
+        <SectionTitle>Creador de Outfits</SectionTitle>
+        <OutfitCreatorContainer>
+          <CustomizationContainer>
+            <h2 style={{ textAlign: 'center' }}>Introduce una Prenda</h2>
+            <FormContainer onSubmit={handleSubmit}>
+              <StyledInput
+                type="text"
+                value={outfitPreview.nombre}
+                onChange={(e) => setOutfitPreview({ ...outfitPreview, nombre: e.target.value })}
+                placeholder="Nombre"
+                required
+              />
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.tipoPrenda}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, tipoPrenda: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>Selecciona Tipo de Prenda</option>
+                  <option value="Camisa">Camisa</option>
+                  <option value="Polo">Polo</option>
+                  <option value="Camiseta">Camiseta</option>
+                  <option value="Sobrecamisa">Sobrecamisa</option>
+                  <option value="Jersey">Jerséy</option>
+                  <option value="Chaqueta">Chaqueta</option>
+                  <option value="Sudadera">Sudadera</option>
+                  <option value="Chandal">Chándal</option>
+                  <option value="Pantalon">Pantalón</option>
+                  <option value="Jeans">Jeans</option>
+                  <option value="Abrigo">Abrigo</option>
+                  <option value="Traje">Traje</option>
+                  <option value="Zapatos">Zapatos</option>
+                  <option value="Bolso | Mochila">Bolso | Mochila</option>
+                  <option value="Accesorio">Accesorio</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.tipoEvento}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, tipoEvento: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>Selecciona Tipo de Evento</option>
+                  <option value="Casual">Casual</option>
+                  <option value="Arreglado">Arreglado</option>
+                  <option value="Urbano">Urbano</option>
+                  <option value="Gala">Elegante</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.tamaño}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, tamaño: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>Selecciona Tipo de Talla</option>
+                  <option value="Sin Talla">Sin Talla</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="2XL">2XL</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
+              <StyledInput
+                type="text"
+                value={outfitPreview.color}
+                onChange={(e) => setOutfitPreview({ ...outfitPreview, color: e.target.value })}
+                placeholder="Color"
+                required
+              />
+              <StyledInput
+                type="text"
+                value={outfitPreview.marca}
+                onChange={(e) => setOutfitPreview({ ...outfitPreview, marca: e.target.value })}
+                placeholder="Marca"
+                required
+              />
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.genero}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, genero: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>Selecciona el Género</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                  <option value="Unisex">Unisex</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.temporada}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, temporada: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>Selecciona Temporada</option>
+                  <option value="Invierno">Invierno</option>
+                  <option value="Primavera">Primavera</option>
+                  <option value="Verano">Verano</option>
+                  <option value="Otoño">Otoño</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
+              <StyledInput
+                type="text"
+                value={outfitPreview.imagenUrl}
+                onChange={(e) => setOutfitPreview({ ...outfitPreview, imagenUrl: e.target.value })}
+                placeholder="URL de la Imagen"
+                required
+              />
+              <StyledButton type="submit" style={{ marginTop: '20px' }}>Agregar Prenda</StyledButton>
+            </FormContainer>
+          </CustomizationContainer>
 
-        <SelectorContainer>
-        <Hr></Hr>
-          <h2>Selecciona tus Prendas Guardadas</h2>
-          {prendas.map(prenda => (
-            <PrendaItem key={prenda.id} onClick={() => agregarAPreview(prenda)}>
-              <img src={prenda.imagenUrl} alt="Prenda" style={{ width: '50px', height: 'auto' }} />
-              <p>{prenda.nombre}</p>
-              <p>{prenda.tipoEvento}</p>
-            </PrendaItem>
-          ))}
-        </SelectorContainer>       
-      </OutfitCreatorContainer>
-      {
-        modalIsOpen && (
-          <Overlay>
-            <Modal>
-              <div style={{ display: 'flex' }}>
-                <div style={{ flex: 1 }}>
-                  <img src={selectedPrenda.imagenUrl} alt="Prenda" style={{ width: '100%', height: 'auto' }} />
+          <PreviewContainer>
+            <h3>Vista Previa del Outfit</h3>
+            <PreviewGrid>
+              {outfitPreviews.map((prenda, index) => (
+                <PrendaPreviewItem key={index} onClick={() => abrirModal(prenda)}>
+                  <PreviewImage src={prenda.imagenUrl} alt="Prenda" />
+                  <div>
+                    <p style={{ fontWeight: 'bold', fontSize: '13px' }}>{prenda.nombre}</p>
+                    <p>{prenda.marca}</p>
+                    <p>Tipo: {prenda.tipoPrenda}</p>
+                    <p>Evento: {prenda.tipoEvento}</p>
+                  </div>
+                  <button onClick={(e) => eliminarPrenda(e, index)} style={{ border: 'none', background: 'none', cursor: 'pointer' }}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </PrendaPreviewItem>
+              ))}
+            </PreviewGrid>
+          </PreviewContainer>
+
+          <SelectorContainer>
+            <Hr></Hr>
+            <h2>Selecciona tus Prendas Guardadas</h2>
+            {prendas.map(prenda => (
+              <PrendaItem key={prenda.id} onClick={() => agregarAPreview(prenda)}>
+                <img src={prenda.imagenUrl} alt="Prenda" style={{ width: '50px', height: 'auto' }} />
+                <p>{prenda.nombre}</p>
+                <p>{prenda.tipoEvento}</p>
+              </PrendaItem>
+            ))}
+          </SelectorContainer>
+        </OutfitCreatorContainer>
+        {
+          modalIsOpen && (
+            <Overlay>
+              <Modal>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ flex: 1 }}>
+                    <img src={selectedPrenda.imagenUrl} alt="Prenda" style={{ width: '100%', height: 'auto' }} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <h2>{selectedPrenda.nombre}</h2>
+                    <p>Tipo de Prenda: {selectedPrenda.tipoPrenda}</p>
+                    <p>Marca: {selectedPrenda.marca}</p>
+                    <p>Color: {selectedPrenda.color}</p>
+                    <p>Género: {selectedPrenda.marca}</p>
+                    {/* Más detalles de la prenda */}
+                    <StyledButton onClick={() => setModalIsOpen(false)}>Cerrar</StyledButton>
+                  </div>
                 </div>
-                <div style={{ flex: 1 }}>
-                  <h2>{selectedPrenda.nombre}</h2>
-                  <p>Tipo de Prenda: {selectedPrenda.tipoPrenda}</p>
-                  <p>Marca: {selectedPrenda.marca}</p>
-                  <p>Color: {selectedPrenda.color}</p>
-                  <p>Género: {selectedPrenda.marca}</p>
-                  {/* Más detalles de la prenda */}
-                  <StyledButton onClick={() => setModalIsOpen(false)}>Cerrar</StyledButton>
-                </div>
-              </div>
-            </Modal>
-          </Overlay>
-        )
-      }
-    </PageContainer>
+              </Modal>
+            </Overlay>
+          )
+        }
+      </PageContainer>
+    </BgContainer>
+
   );
 };
 
