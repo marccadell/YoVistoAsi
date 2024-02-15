@@ -25,16 +25,16 @@ const SectionTitle = styled.h1`
 
 const OutfitCreatorContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr; // Ajusta según tus necesidades, por ejemplo, selector y preview con proporciones específicas
-  gap: 20px; // Espacio entre los elementos del grid
-  background-color: #f9f9f9; // Fondo claro
+  grid-template-columns: 1fr 2fr; 
+  gap: 20px; 
+  background-color: #f9f9f9; 
   width: 90%;
   padding: 50px 20px 50px 20px;
   box-shadow: 0 2px 15px rgba(0,0,0,0.3);
   
 
   @media (max-width: 920px) {
-    grid-template-columns: 1fr; // Cambia a una sola columna en pantallas pequeñas
+    grid-template-columns: 1fr; 
   }
 `;
 
@@ -45,20 +45,20 @@ const SelectorContainer = styled.div`
   max-height: 600px; 
   border-bottom: 1px solid grey;
   border-bottom-left-radius: 6px;
-  grid-column: 1 / -1; // Hace que ocupe toda la fila en resoluciones específicas
+  grid-column: 1 / -1; 
 
   @media (max-width: 920px) {
-    width: 100%; // Ocupa todo el ancho en vistas más pequeñas
+    width: 100%; 
   }
 `;
 
 const PreviewContainer = styled.div`
   flex: 2;
   display: flex;
-  flex-direction: column; // Cambiado para permitir la orientación de los elementos internos en columna
+  flex-direction: column; 
   align-items: center;
   margin: 10px;
-  height: auto; // Ajustado para adaptarse al contenido
+  height: auto; 
   border: 2px dashed #ccc;
   background-color: #ffffff;
 `;
@@ -88,7 +88,7 @@ const FormContainer = styled.form`
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  max-width: 400px; // Ajusta este valor según tus necesidades
+  max-width: 400px; 
   margin: 0 auto;
 `;
 
@@ -120,10 +120,10 @@ const PreviewGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
-  padding: 10px; // Asegúrate de que este padding sea suficiente
-  margin: 10px 0; // Ajusta los márgenes según necesites
-  width: calc(100% - 20px); // Ajusta el ancho considerando el padding
-  box-sizing: border-box; // Asegura que el padding no afecte el ancho total
+  padding: 10px; 
+  margin: 10px 0; 
+  width: calc(100% - 20px); 
+  box-sizing: border-box; 
   overflow-y: auto; 
   min-height: 700px; 
 
@@ -146,34 +146,34 @@ const PreviewGrid = styled.div`
 `;
 
 const PrendaPreviewItem = styled.div`
-  width: 200px; // Ancho fijo para el contenedor
-  height: 300px; // Altura fija para el contenedor
+  width: 200px; 
+  height: 300px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: hidden; // Evita que el contenido sobresalga del contenedor
-  border: 1px solid #e1e1e1; // Ejemplo de borde
-  border-radius: 10px; // Bordes redondeados
-  padding: 10px; // Padding interior
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); // Sombra suave
-  background-color: #f9f9f9; // Fondo claro
-  margin: 10px; // Margen para separar de otros elementos
-  box-sizing: border-box; // Asegura que padding y border se incluyan en el cálculo del tamaño
-  cursor: pointer; // Indica que el elemento es interactivo
+  overflow: hidden; 
+  border: 1px solid #e1e1e1; 
+  border-radius: 10px; 
+  padding: 10px; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  background-color: #f9f9f9; 
+  margin: 10px; 
+  box-sizing: border-box; 
+  cursor: pointer; 
   
   &:hover {
-    transform: translateY(-5px); // Efecto de "levitación" al pasar el mouse
+    transform: translateY(-5px); 
   }
 
 `;
 
 const PreviewImage = styled.img`
-  width: 100px; // Tamaño XS
+  width: 100px; 
   height: 100px;
   object-fit: cover;
-  border-radius: 5px; // Opcional, si deseas bordes redondeados
+  border-radius: 5px; 
 `;
 
 const PrendaItem = styled.div`
@@ -207,8 +207,8 @@ const Modal = styled.div`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  max-width: 500px; // Ajusta este valor según tus necesidades
-  width: 90%; // Asegura que el modal sea responsive
+  max-width: 500px;
+  width: 90%; 
 `;
 
 const Hr = styled.hr`
@@ -253,7 +253,7 @@ const CreateOutfit = () => {
   };
 
   const eliminarPrenda = (e, index) => {
-    e.stopPropagation(); // Esto previene que el evento de clic se propague.
+    e.stopPropagation(); 
     setOutfitPreviews(prevPreviews => prevPreviews.filter((_, i) => i !== index));
   };
 
