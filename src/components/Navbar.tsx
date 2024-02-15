@@ -97,10 +97,10 @@ interface MenuModel {
 }
 
 const items: MenuModel[] = [
-  { name: "Home", link: "/Home" },
   { name: "Sign Up", link: "/Register" },
   { name: "Log in", link: "/Login" },
   { name: "Crear Outfit", link: "/CreateOutfit" },
+  { name: "Generar Outfit", link: "/GenerateOutfit" }
 ];
 
 const Overlay = styled.div`

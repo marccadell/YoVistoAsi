@@ -7,12 +7,13 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Link } from 'react-router-dom';
 
+
 const FooterWrapper = styled.div`
   background: var(--clr-footer-bg);
 `;
 
 const FooterContainer = styled.div`
-  padding: 40px 0;
+  padding: 60px 0 50px;
   display: grid;
   grid-template-columns: repeat(4, auto);
   grid-column-gap: 20px;
@@ -49,7 +50,7 @@ const SubFooter = styled.div`
   color: #8e8e9d;
   font-size: 10px;
   margin-top: 10px;
-  padding-bottom: 15px;
+  padding-bottom: 50px;
   cursor: default;
   user-select: none;
   > span {
