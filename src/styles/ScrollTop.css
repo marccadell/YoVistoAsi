@@ -1,0 +1,40 @@
+.top-to-btm {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  z-index: 9999;
+  
+}
+
+.top-to-btm.visible {
+  opacity: 1;
+}
+
+.icon-position {
+  position: fixed;
+  bottom: 40px;
+  right: 25px;
+  z-index: 9999;
+}
+
+.icon-style {
+  background-color: var(--clr-btn);
+  border-radius: 50%;
+  border: none;
+  height: 70px;
+  width: 70px;
+  color: var(--clr-white);
+  cursor: pointer;
+  transition: var(--ts);
+}
+
+.icon-style .icon {
+  font-size: 3rem;
+}
+
+.icon-style:hover {
+  background: var(--clr-btn-hover);
+
+}

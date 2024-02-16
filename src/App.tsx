@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Navigate, Routes, Route, BrowserRouter as Router, useLocation } from 'react-router-dom';
+import { Fragment, lazy, Suspense, useEffect } from "react";
 import './App.css'
 
+const Navbar = lazy(() => import("./components/Navbar"));
+const Footer = lazy(() => import("./components/Footer"));
+const Register = lazy(() => import("./pages/Register"));
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const CreateOutfit = lazy(() => import("./pages/CreateOutfit"));
+const GenerateOutfit = lazy(() => import("./pages/GenerateOutfit"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Team = lazy(() => import("./pages/Team"));
+const ScrollTop = lazy(() => import("./components/ScrollTop"));
+const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
+
+
+import { requireLoggedOut } from "./Guards/RouteGuard";
+
+import { ToastContainer } from "react-toastify";
+
+import Spinner from "./components/Spinner";
+
+
+import Objective from './pages/Objective';
+
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <ScrollTop/>
+    <Router>
+    <ScrollToTop/>
+    <Fragment>
+      <Suspense fallback={<Spinner />}>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Register" element={<Register />} />
+        {/*<Route
+              path="/Login"
+              element={requireLoggedOut() ? <Login /> : <Navigate to="/Login" />}
+        /> */}
+        <Route path="/Login" element={<Login />} />
+        <Route path="/CreateOutfit" element={<CreateOutfit />} />
+        <Route path="/GenerateOutfit" element={<GenerateOutfit />} />
+        
+        <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/Team" element={<Team />} />
+        <Route path="/Objective" element={<Objective />} />
+      </Routes>
+
+      <Footer />
+      <ToastContainer autoClose={1000}/>
+      </Suspense>
+    </Fragment>
+    </Router>
+
+    
     </>
-  )
+  );
 }
 
-export default App
+export default App;
