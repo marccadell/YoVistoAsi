@@ -1,6 +1,8 @@
 import { Navigate, Routes, Route, BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { Fragment, lazy, Suspense, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 import './App.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
@@ -14,16 +16,11 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Team = lazy(() => import("./pages/Team"));
 const ScrollTop = lazy(() => import("./components/ScrollTop"));
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
-
-
-import { requireLoggedOut } from "./Guards/RouteGuard";
-
-import { ToastContainer } from "react-toastify";
+const Objective = lazy(() => import("./pages/Objective"));
 
 import Spinner from "./components/Spinner";
+import { requireLoggedOut } from "./Guards/RouteGuard";
 
-
-import Objective from './pages/Objective';
 
 
 function App() {

@@ -72,6 +72,15 @@ h1 {
   line-height: 1.1;
 }
 
+.Toastify__toast {
+  font-size: 13px;
+}
+
+.Toastify__close-button {
+  color: #ffffff;
+}
+
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
