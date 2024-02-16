@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { toast } from "react-toastify";
 import styled from "styled-components";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 interface LoginInputs {
     email: string;
@@ -113,20 +114,18 @@ function Login() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const { email, password } = inputs;
+    
         try {
-            const res = await login(inputs);
-            if (res.data.success) {
-                navigate("/");
-                toast.success(res.data.message);
-            } else {
-                toast.error(res.data.message);
-            }
-        } catch (err) {
-            if (err instanceof Error) {
-                toast.error(err.message);
-            } else {
-                toast.error("An unexpected error occurred.");
-            }
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    
+            console.log("Inicio de sesión exitoso:", userCredential.user);
+            
+            navigate("/"); // Asegúrate de cambiar "/" por la ruta a la que quieres redirigir después del inicio de sesión
+            console.log("Inicio de sesión exitoso");
+        } catch (error) {
+            console.error("Error en el inicio de sesión:", error);
+            
         }
     };
 

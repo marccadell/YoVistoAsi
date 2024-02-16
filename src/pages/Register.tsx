@@ -161,23 +161,24 @@ const Register: React.FC = () => {
         try {
             // Crear usuario en Auth
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
+    
             // Agregar datos adicionales a Firestore
             const user = userCredential.user;
-            const userDocRef = doc(db, 'Usuarios', user.uid);  // 'Usuarios' es el nombre de tu colección
-
-            await setDoc(userDocRef, {
+    
+            // Asegúrate de que la colección 'Usuarios' exista en tu Firestore
+            // y de que tienes los permisos necesarios para escribir en ella.
+            await setDoc(doc(db, 'Usuarios', user.uid), {
                 email,
+                name,
                 lastName,
                 lastName2,
-                name,
                 sex,
             });
-
+    
             console.log('Usuario registrado con UID:', user.uid);
-
-            // Redirigir a la página de tareas después del registro
-            navigate('/');
+    
+            // Redirigir a la página principal (o a cualquier otra) después del registro
+            navigate('/'); // Asegúrate de que esta ruta es correcta y lleva a donde deseas
         } catch (error) {
             console.error("Error al crear la cuenta: ", error.message);
             // Aquí puedes manejar el error, como mostrar un mensaje al usuario
