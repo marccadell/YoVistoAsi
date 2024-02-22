@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 
 const FormContainer = styled.form`
@@ -79,7 +80,6 @@ const TextArea = styled.textarea`
     }
 `;
 
-// Corregir 
 const FormContact: React.FC = () => {
 
     const [data, setData] = useState({ name: "", email: "", phone: "", message: "" });
@@ -89,7 +89,6 @@ const FormContact: React.FC = () => {
         const contactCollection = collection(db, 'Contacta');
 
         try {
-            // Agregar datos a la colección 'Contact'
             await addDoc(contactCollection, {
                 name: data.name,
                 email: data.email,
@@ -99,9 +98,9 @@ const FormContact: React.FC = () => {
 
             // Limpiar el formulario después de enviar
             setData({ name: '', email: '', phone: '', message: '' });
-            alert('¡Datos enviados correctamente!');
+            toast.success('¡Datos enviados correctamente!');
         } catch (error) {
-            alert('Error al enviar los datos', error);
+            toast.error('Error al enviar los datos', error);
         }
     };
 
@@ -117,7 +116,5 @@ const FormContact: React.FC = () => {
     );
 };
 
-// Hasta aquí
-// Gracias mejor profe del mundo
 
 export default FormContact;

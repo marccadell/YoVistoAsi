@@ -203,12 +203,12 @@ const FooterObj = [
     link: [
       {
         name: "Facebook",
-        link: "https://www.facebook.es",
+        link: "https://www.facebook.com/profile.php?id=61556312175420",
         icon: faFacebook,
       },
       {
         name: "Instagram",
-        link: "https://www.instagram.com/",
+        link: "https://www.instagram.com/yovistoasiteam/",
         icon: faInstagram,
       },
       {

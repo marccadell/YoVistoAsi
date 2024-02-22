@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 
 const PageContainer = styled.div`
@@ -248,6 +249,7 @@ const initialState = {
   imagenUrl: '',
   marca: '',
   tamaño: '',
+  numeroZapato: '',
   temporada: '',
   tipoPrenda: '',
   tipoEvento: '',
@@ -290,10 +292,10 @@ const CreateOutfit = () => {
       await addDoc(collection(db, "Prendas"), outfitPreview);
       setOutfitPreviews([...outfitPreviews, outfitPreview]);
       setOutfitPreview(initialState); // Resetear el formulario
-      alert("Prenda agregada con éxito");
+      toast.success("Prenda agregada con éxito");
     } catch (error) {
       console.error("Error agregando prenda: ", error);
-      alert("Error agregando prenda: " + error.message);
+      toast.error("Error agregando prenda: " + error.message);
     }
   };
 
@@ -333,7 +335,8 @@ const CreateOutfit = () => {
                   <option value="Abrigo">Abrigo</option>
                   <option value="Traje">Traje</option>
                   <option value="Zapatos">Zapatos</option>
-                  <option value="Bolso | Mochila">Bolso | Mochila</option>
+                  <option value="Sombrero">Sombrero</option>
+                  <option value="Bolso|Mochila">Bolso | Mochila</option>
                   <option value="Accesorio">Accesorio</option>
                 </StyledInputSelect>
               </StyledInputPosition>
@@ -354,7 +357,6 @@ const CreateOutfit = () => {
                 <StyledInputSelect
                   value={outfitPreview.tamaño}
                   onChange={(e) => setOutfitPreview({ ...outfitPreview, tamaño: e.target.value })}
-                  required
                 >
                   <option value="" disabled selected>Selecciona Tipo de Talla</option>
                   <option value="Sin Talla">Sin Talla</option>
@@ -366,13 +368,45 @@ const CreateOutfit = () => {
                   <option value="2XL">2XL</option>
                 </StyledInputSelect>
               </StyledInputPosition>
-              <StyledInput
-                type="text"
-                value={outfitPreview.color}
-                onChange={(e) => setOutfitPreview({ ...outfitPreview, color: e.target.value })}
-                placeholder="Color"
-                required
-              />
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.color}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, color: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>Selecciona el Color</option>
+                  <option value="Negro">Negro</option>
+                  <option value="Blanco">Blanco</option>
+                  <option value="Rojo">Rojo</option>
+                  <option value="Azul">Azul</option>
+                  <option value="Verde">Verde</option>
+                  <option value="Amarillo">Amarillo</option>
+                  <option value="Naranja">Naranja</option>
+                  <option value="Marrón">Marrón</option>
+                  <option value="Gris">Gris</option>
+                  <option value="Rosa">Rosa</option>
+                  <option value="Violeta">Violeta</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.numeroZapato}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, numeroZapato: e.target.value })}
+                >
+                  <option value="" disabled selected>Selecciona el Número de Calzado</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
               <StyledInput
                 type="text"
                 value={outfitPreview.marca}
@@ -399,6 +433,7 @@ const CreateOutfit = () => {
                   required
                 >
                   <option value="" disabled selected>Selecciona Temporada</option>
+                  <option value="CualquierEstación">Cualquier Estación</option>
                   <option value="Invierno">Invierno</option>
                   <option value="Primavera">Primavera</option>
                   <option value="Verano">Verano</option>
@@ -443,7 +478,7 @@ const CreateOutfit = () => {
               <PrendaItem key={prenda.id} onClick={() => agregarAPreview(prenda)}>
                 <img src={prenda.imagenUrl} alt="Prenda" style={{ width: '50px', height: 'auto' }} />
                 <p>{prenda.nombre}</p>
-                <p>{prenda.tipoEvento}</p>
+                <p>{prenda.tipoPrenda}</p>
               </PrendaItem>
             ))}
           </SelectorContainer>
@@ -461,7 +496,7 @@ const CreateOutfit = () => {
                     <p>Tipo de Prenda: {selectedPrenda.tipoPrenda}</p>
                     <p>Marca: {selectedPrenda.marca}</p>
                     <p>Color: {selectedPrenda.color}</p>
-                    <p>Género: {selectedPrenda.marca}</p>
+                    <p>Género: {selectedPrenda.genero}</p>
                     {/* Más detalles de la prenda */}
                     <StyledButton onClick={() => setModalIsOpen(false)}>Cerrar</StyledButton>
                   </div>

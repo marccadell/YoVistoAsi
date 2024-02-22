@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 import styled from 'styled-components';
+import { toast } from "react-toastify";
 
 // Background del Contenedor Raiz
 const BgContainer = styled.div`
@@ -175,12 +176,12 @@ const Register: React.FC = () => {
                 sex,
             });
     
-            console.log('Usuario registrado con UID:', user.uid);
+            toast.success('Usuario registrado con UID:', user.uid);
     
             // Redirigir a la página principal (o a cualquier otra) después del registro
             navigate('/'); // Asegúrate de que esta ruta es correcta y lleva a donde deseas
         } catch (error) {
-            console.error("Error al crear la cuenta: ", error.message);
+            toast.error("Error al crear la cuenta: ", error.message);
             // Aquí puedes manejar el error, como mostrar un mensaje al usuario
         }
     };

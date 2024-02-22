@@ -135,8 +135,21 @@ const GeneradorPrendas = () => {
           onChange={(e) => setFiltroTipoPrenda(e.target.value)}
         >
           <option value="">Todos</option>
-          <option value="camiseta">Camiseta</option>
-          <option value="pantalon">Pantalón</option>
+          <option value="Camisa">Camisa</option>
+          <option value="Polo">Polo</option>
+          <option value="Camiseta">Camiseta</option>
+          <option value="Sobrecamisa">Sobrecamisa</option>
+          <option value="Jersey">Jerséy</option>
+          <option value="Chaqueta">Chaqueta</option>
+          <option value="Sudadera">Sudadera</option>
+          <option value="Chandal">Chándal</option>
+          <option value="Pantalon">Pantalón</option>
+          <option value="Jeans">Jeans</option>
+          <option value="Abrigo">Abrigo</option>
+          <option value="Traje">Traje</option>
+          <option value="Zapatos">Zapatos</option>
+          <option value="Bolso | Mochila">Bolso | Mochila</option>
+          <option value="Accesorio">Accesorio</option>
           {/* Agrega más opciones según los tipos de prendas que tengas */}
         </Select>
       </Label>
