@@ -386,6 +386,8 @@ const CreateOutfit = () => {
                   <option value="Gris">Gris</option>
                   <option value="Rosa">Rosa</option>
                   <option value="Violeta">Violeta</option>
+                  <option value="Plata">Plata</option>
+                  <option value="Oro">Oro</option>
                 </StyledInputSelect>
               </StyledInputPosition>
               <StyledInputPosition>
