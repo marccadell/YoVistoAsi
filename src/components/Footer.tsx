@@ -19,8 +19,10 @@ const FooterContainer = styled.div`
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   justify-content: center;
-  @media(max-width: 900px) {
+
+  @media screen and (max-width: 1072px) and (min-width: 689px) {
     grid-template-columns: repeat(2, auto);
+    margin-left: 80px;
   }
   @media(max-width: 688px) {
     grid-template-columns: repeat(1, auto);

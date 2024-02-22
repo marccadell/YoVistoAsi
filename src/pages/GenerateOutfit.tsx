@@ -12,16 +12,37 @@ const BgContainer = styled.div`
   background-repeat: no-repeat;
 `;
 
-const Container = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
+`;
+
+const Container = styled.div`
+  width: 70%;
+  margin: 40px auto;
+  padding: 30px;
+  padding-bottom: 60px;
   font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+  border-radius: 10px;
+
 `;
 
 const Title = styled.h1`
-  font-size: 24px;
+  font-size: 2.9rem;
   margin-bottom: 20px;
+  text-align: center;
+  padding: 15px;
+`;
+
+const SubTitle = styled.h2`
+  font-size: 18px;
+  margin-bottom: px;
+  margin-top: 20px;
+  text-align: center;
 `;
 
 const Label = styled.label`
@@ -29,11 +50,18 @@ const Label = styled.label`
   margin-bottom: 10px;
 `;
 
-const Input = styled.input`
+{/*const Input = styled.input`
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
+`;*/}
+
+const ButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
 `;
 
 const Button = styled.button`
@@ -45,9 +73,17 @@ const Button = styled.button`
   border-radius: 5px;
   margin-top: 10px;
 
+
   &:hover {
     background-color: #0056b3;
   }
+`;
+
+const Hr = styled.hr`
+  width: 70%;
+  margin: 30px auto 40px auto;
+  border: none;
+  border-top: 3px solid #534d4d51;
 `;
 
 const Select = styled.select`
@@ -101,30 +137,25 @@ const GeneradorPrendas = () => {
   const obtenerPrendas = async () => {
     try {
       let queryRef = collection(db, "Prendas");
-  
+
       const condiciones = [];
-  
-      // Asegurándonos de que el tipo de evento está seleccionado
+
       if (tipoEvento) {
         condiciones.push(where("tipoEvento", "==", tipoEvento));
       }
-  
-      // Aplicar filtro por tipo de prenda si está seleccionado
+
       if (filtroTipoPrenda) {
         condiciones.push(where("tipoPrenda", "==", filtroTipoPrenda));
       }
-  
-      // Aplicar filtro por color si está seleccionado
-      // Asumiendo que los colores están almacenados en minúsculas en la base de datos
+
       if (filtroColor) {
         condiciones.push(where("color", "==", filtroColor));
       }
-  
-      // Si hay condiciones, aplicarlas todas a la consulta
+
       if (condiciones.length > 0) {
         queryRef = query(queryRef, ...condiciones);
       }
-  
+
       const querySnapshot = await getDocs(queryRef);
       const prendasArray = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setPrendasSeleccionadas(prendasArray);
@@ -133,15 +164,7 @@ const GeneradorPrendas = () => {
     }
   };
 
-  const obtenerPrendaAleatoria = () => {
-    if (prendasSeleccionadas.length > 0) {
-      const indiceAleatorio = Math.floor(Math.random() * prendasSeleccionadas.length);
-      setPrendaAleatoria(prendasSeleccionadas[indiceAleatorio]);
-    }
-  };
-
   const agregarPrendaVistaPrevia = () => {
-
     const prendasFiltradas = prendasSeleccionadas.filter(prenda => {
       const cumpleTipoPrenda = filtroTipoPrenda ? prenda.tipoPrenda === filtroTipoPrenda : true;
       const cumpleColor = filtroColor ? prenda.color === filtroColor : true;
@@ -149,23 +172,24 @@ const GeneradorPrendas = () => {
     });
 
     if (prendasFiltradas.length > 0) {
-      let intentos = 0;
+      let intentos = 1;
       let agregado = false;
 
       while (!agregado && intentos < prendasFiltradas.length) {
         const indiceAleatorio = Math.floor(Math.random() * prendasFiltradas.length);
         const prendaAleatoria = prendasFiltradas[indiceAleatorio];
-  
+
         const yaEstaEnVistaPrevia = prendasVistaPrevia.some(prenda => prenda.id === prendaAleatoria.id);
-  
+
         if (!yaEstaEnVistaPrevia) {
           setPrendasVistaPrevia(prevPrendas => [...prevPrendas, prendaAleatoria]);
           agregado = true;
+          toast.success("Prenda Generada");
         } else {
           intentos++;
         }
       }
-  
+
       if (!agregado) {
         toast.warning("Todas las prendas disponibles ya están en la vista previa o no cumplen con los filtros.");
       }
@@ -175,85 +199,90 @@ const GeneradorPrendas = () => {
   };
 
   return (
-    <Container>
-      <Title>Generador de Prendas</Title>
-      <Label>
-        Tipo de Evento:
-        <Select
-          value={tipoEvento}
-          onChange={(e) => setTipoEvento(e.target.value)}
-        >
-          <option value="" disabled selected>Selecciona el Evento</option>
-          <option value="Casual">Casual</option>
-          <option value="Arreglado">Arreglado</option>
-          <option value="Urbano">Urbano</option>
-          <option value="Elegante">Elegante</option>
-        </Select>
-      </Label>
+    <BgContainer>
+      <PageContainer>
+        <Container>
+          <Title>Generador de Prendas</Title>
+          <Label>
+            Tipo de Evento:
+            <Select
+              value={tipoEvento}
+              onChange={(e) => setTipoEvento(e.target.value)}
+            >
+              <option value="" disabled selected>Selecciona el Evento</option>
+              <option value="Casual">Casual</option>
+              <option value="Arreglado">Arreglado</option>
+              <option value="Urbano">Urbano</option>
+              <option value="Elegante">Elegante</option>
+            </Select>
+          </Label>
 
-      <Label>
-        Filtrar por Tipo de Prenda:
-        <Select
-          value={filtroTipoPrenda}
-          onChange={(e) => setFiltroTipoPrenda(e.target.value)}
-        >
-          <option value="">Todos</option>
-          <option value="Camisa">Camisa</option>
-          <option value="Polo">Polo</option>
-          <option value="Camiseta">Camiseta</option>
-          <option value="Sobrecamisa">Sobrecamisa</option>
-          <option value="Jersey">Jerséy</option>
-          <option value="Chaqueta">Chaqueta</option>
-          <option value="Sudadera">Sudadera</option>
-          <option value="Chandal">Chándal</option>
-          <option value="Pantalon">Pantalón</option>
-          <option value="Jeans">Jeans</option>
-          <option value="Abrigo">Abrigo</option>
-          <option value="Traje">Traje</option>
-          <option value="Zapatos">Zapatos</option>
-          <option value="Bolso|Mochila">Bolso | Mochila</option>
-          <option value="Accesorio">Accesorio</option>
-        </Select>
-      </Label>
+          <Label>
+            Filtrar por Tipo de Prenda:
+            <Select
+              value={filtroTipoPrenda}
+              onChange={(e) => setFiltroTipoPrenda(e.target.value)}
+            >
+              <option value="">Todos</option>
+              <option value="Camisa">Camisa</option>
+              <option value="Polo">Polo</option>
+              <option value="Camiseta">Camiseta</option>
+              <option value="Sobrecamisa">Sobrecamisa</option>
+              <option value="Jersey">Jerséy</option>
+              <option value="Chaqueta">Chaqueta</option>
+              <option value="Sudadera">Sudadera</option>
+              <option value="Chandal">Chándal</option>
+              <option value="Pantalon">Pantalón</option>
+              <option value="Jeans">Jeans</option>
+              <option value="Abrigo">Abrigo</option>
+              <option value="Traje">Traje</option>
+              <option value="Zapatos">Zapatos</option>
+              <option value="Bolso|Mochila">Bolso | Mochila</option>
+              <option value="Accesorio">Accesorio</option>
+            </Select>
+          </Label>
 
-      <Label>
-        Filtrar por Color:
-        <Select
-          value={filtroColor}
-          onChange={(e) => setFiltroColor(e.target.value)}
-        >
-          <option value="" selected>Cualquiera</option>
-          <option value="Negro">Negro</option>
-          <option value="Blanco">Blanco</option>
-          <option value="Rojo">Rojo</option>
-          <option value="Azul">Azul</option>
-          <option value="Verde">Verde</option>
-          <option value="Amarillo">Amarillo</option>
-          <option value="Naranja">Naranja</option>
-          <option value="Marrón">Marrón</option>
-          <option value="Gris">Gris</option>
-          <option value="Rosa">Rosa</option>
-          <option value="Violeta">Violeta</option>
-          <option value="Plata">Plata</option>
-          <option value="Oro">Oro</option>
-        </Select>
-      </Label>
+          <Label>
+            Filtrar por Color:
+            <Select
+              value={filtroColor}
+              onChange={(e) => setFiltroColor(e.target.value)}
+            >
+              <option value="" selected>Cualquiera</option>
+              <option value="Negro">Negro</option>
+              <option value="Blanco">Blanco</option>
+              <option value="Rojo">Rojo</option>
+              <option value="Azul">Azul</option>
+              <option value="Verde">Verde</option>
+              <option value="Amarillo">Amarillo</option>
+              <option value="Naranja">Naranja</option>
+              <option value="Marrón">Marrón</option>
+              <option value="Gris">Gris</option>
+              <option value="Rosa">Rosa</option>
+              <option value="Violeta">Violeta</option>
+              <option value="Plata">Plata</option>
+              <option value="Oro">Oro</option>
+            </Select>
+          </Label>
 
-      <Button onClick={agregarPrendaVistaPrevia}>Generar Prenda</Button>
-        <ResultsContainer>
-          <h2>Las Prendas Elegidas Para Tú Outfit</h2>
-          {prendasVistaPrevia.map((prenda, index) => (
-            <ResultCard key={index}>
-              <PreviewImage src={prenda.imagenUrl} alt="Prenda" />
-              <PreviewParrafo>
-                <h2>{prenda.nombre}</h2>
-                <p>{prenda.tipoPrenda}</p>
-                <p>{prenda.marca}</p>
-              </PreviewParrafo>
-            </ResultCard>
-          ))}
-        </ResultsContainer>
-    </Container>
+          <ButtonBox><Button onClick={agregarPrendaVistaPrevia}>Generar Prenda</Button></ButtonBox>
+          <ResultsContainer>
+            <Hr></Hr>
+            <SubTitle>Las Prendas Elegidas Para Tú Outfit</SubTitle>
+            {prendasVistaPrevia.map((prenda, index) => (
+              <ResultCard key={index}>
+                <PreviewImage src={prenda.imagenUrl} alt="Prenda" />
+                <PreviewParrafo>
+                  <h2>{prenda.nombre}</h2>
+                  <p>{prenda.tipoPrenda}</p>
+                  <p>{prenda.marca}</p>
+                </PreviewParrafo>
+              </ResultCard>
+            ))}
+          </ResultsContainer>
+        </Container>
+      </PageContainer>
+    </BgContainer>
   );
 };
 
