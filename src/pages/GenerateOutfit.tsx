@@ -3,6 +3,7 @@ import { addDoc, getDocs, collection, doc, setDoc, where, query } from 'firebase
 import { db } from '../firebase';
 
 import styled from "styled-components";
+import confetti from 'canvas-confetti';
 import { toast } from 'react-toastify';
 
 
@@ -97,14 +98,28 @@ const ResultsContainer = styled.div`
   margin-top: 20px;
 `;
 
-
 const ResultCard = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   margin-top: 10px;
+`;
+
+const EliminarButton = styled.button`
+  margin-left: 10px;
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+
+  &:hover {
+    background-color: #ff2e00;
+  }
 `;
 
 const PreviewImage = styled.img`
@@ -120,15 +135,90 @@ const PreviewParrafo = styled.p`
   flex-direction: column;
 `;
 
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const Modal = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; 
+  max-width: 500px; 
+  width: 90%; 
+  z-index: 1010; 
+
+  h2 {
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: #007bff; 
+    margin-bottom: 20px; 
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 20px; 
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+`;
+
+const LimpiarButton = styled.button`
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #dc3545; 
+  color: white;
+  cursor: pointer;
+  margin-top: 20px; 
+
+  &:hover {
+    background-color: #c82333; 
+  }
+`;
+
+const lanzarConfeti = () => {
+  confetti({
+    zIndex: 999,
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
+};
+
+
+
+
 
 const GeneradorPrendas = () => {
   const [tipoEvento, setTipoEvento] = useState('');
   const [filtroTipoPrenda, setFiltroTipoPrenda] = useState('');
   const [filtroColor, setFiltroColor] = useState('');
   const [prendasSeleccionadas, setPrendasSeleccionadas] = useState([]);
-  const [prendaAleatoria, setPrendaAleatoria] = useState(null);
   const [prendasVistaPrevia, setPrendasVistaPrevia] = useState([]);
-
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     obtenerPrendas();
@@ -164,6 +254,10 @@ const GeneradorPrendas = () => {
     }
   };
 
+  const eliminarPrendaDeVistaPrevia = (idPrenda) => {
+    setPrendasVistaPrevia(prendasVistaPrevia.filter(prenda => prenda.id !== idPrenda));
+  };
+
   const agregarPrendaVistaPrevia = () => {
     const prendasFiltradas = prendasSeleccionadas.filter(prenda => {
       const cumpleTipoPrenda = filtroTipoPrenda ? prenda.tipoPrenda === filtroTipoPrenda : true;
@@ -172,7 +266,7 @@ const GeneradorPrendas = () => {
     });
 
     if (prendasFiltradas.length > 0) {
-      let intentos = 1;
+      let intentos = 0;
       let agregado = false;
 
       while (!agregado && intentos < prendasFiltradas.length) {
@@ -195,6 +289,11 @@ const GeneradorPrendas = () => {
       }
     } else {
       toast.error("No hay prendas que cumplan con los filtros seleccionados.");
+    }
+
+    if (prendasVistaPrevia.length + 1 === 5) {
+      setModalVisible(true);
+      lanzarConfeti();
     }
   };
 
@@ -237,6 +336,7 @@ const GeneradorPrendas = () => {
               <option value="Abrigo">Abrigo</option>
               <option value="Traje">Traje</option>
               <option value="Zapatos">Zapatos</option>
+              <option value="Sombrero">Sombrero</option>
               <option value="Bolso|Mochila">Bolso | Mochila</option>
               <option value="Accesorio">Accesorio</option>
             </Select>
@@ -274,12 +374,25 @@ const GeneradorPrendas = () => {
                 <PreviewImage src={prenda.imagenUrl} alt="Prenda" />
                 <PreviewParrafo>
                   <h2>{prenda.nombre}</h2>
-                  <p>{prenda.tipoPrenda}</p>
-                  <p>{prenda.marca}</p>
+                  <p>Tipo: {prenda.tipoPrenda}</p>
+                  <p>Marca: {prenda.marca}</p>
                 </PreviewParrafo>
+                <EliminarButton onClick={() => eliminarPrendaDeVistaPrevia(prenda.id)}>Eliminar</EliminarButton>
               </ResultCard>
             ))}
           </ResultsContainer>
+          {prendasVistaPrevia.length > 0 && (
+            <ButtonBox><LimpiarButton onClick={() => setPrendasVistaPrevia([])}>Limpiar Vista Previa</LimpiarButton></ButtonBox>
+          )}
+          {modalVisible && (
+          <Overlay>
+            <Modal>
+              <h2>Felicidades</h2>
+              <p>Tu outfit está completado.</p>
+              <button onClick={() => setModalVisible(false)}>Cerrar</button>
+            </Modal>
+          </Overlay>
+        )}
         </Container>
       </PageContainer>
     </BgContainer>

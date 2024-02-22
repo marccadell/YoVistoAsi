@@ -97,7 +97,6 @@ interface MenuModel {
 }
 
 const items: MenuModel[] = [
-  { name: "Sign Up", link: "/Register" },
   { name: "Log in", link: "/Login" },
   { name: "Crear Outfit", link: "/CreateOutfit" },
   { name: "Generar Outfit", link: "/GenerateOutfit" }
