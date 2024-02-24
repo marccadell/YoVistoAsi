@@ -4,6 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import styled from "styled-components";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import { toast } from 'react-toastify';
 
 interface LoginInputs {
     email: string;
@@ -122,9 +123,9 @@ function Login() {
             console.log("Inicio de sesión exitoso:", userCredential.user);
             
             navigate("/"); // Asegúrate de cambiar "/" por la ruta a la que quieres redirigir después del inicio de sesión
-            console.log("Inicio de sesión exitoso");
+            toast.success("Inicio de sesión exitoso");
         } catch (error) {
-            console.error("Error en el inicio de sesión:", error);
+            toast.error("Error en el inicio de sesión:", error);
             
         }
     };

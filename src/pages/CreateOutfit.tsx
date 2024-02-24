@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 
 const PageContainer = styled.div`
@@ -37,6 +38,7 @@ const OutfitCreatorContainer = styled.div`
   width: 90%;
   padding: 50px 20px 50px 20px;
   box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+  border-radius: 10px;
   
 
   @media (max-width: 920px) {
@@ -49,8 +51,6 @@ const SelectorContainer = styled.div`
   margin-top: 50px;
   overflow-y: auto; 
   max-height: 600px; 
-  border-bottom: 1px solid grey;
-  border-bottom-left-radius: 6px;
   grid-column: 1 / -1; 
 
   @media (max-width: 920px) {
@@ -72,20 +72,6 @@ const PreviewContainer = styled.div`
 const CustomizationContainer = styled.div`
   flex: 1;
   margin: 10px;
-`;
-
-const ActionButton = styled.button`
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    background-color: #0056b3;
-  }
 `;
 
 // Estilo del contenedor del formulario
@@ -225,12 +211,44 @@ const Overlay = styled.div`
 
 const Modal = styled.div`
   background: white;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 30px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   max-width: 500px;
-  width: 90%; 
+  width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const ModalImage = styled.img`
+  max-width: 80%; 
+  max-height: 300px; 
+  object-fit: cover; 
+  border-radius: 5px; 
+  margin-bottom: 20px; 
+`;
+
+const ModalImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalTitle = styled.h2`
+  font-size: 24px; 
+  font-weight: bold;
+  color: #333; 
+  margin-bottom: 15px; 
+`;
+
+const ModalText = styled.p`
+  font-size: 16px; 
+  color: #555; 
+  line-height: 1.5; 
+  &:not(:last-child) {
+    margin-bottom: 10px; 
+  }
 `;
 
 const Hr = styled.hr`
@@ -248,6 +266,7 @@ const initialState = {
   imagenUrl: '',
   marca: '',
   tamaño: '',
+  numeroZapato: '',
   temporada: '',
   tipoPrenda: '',
   tipoEvento: '',
@@ -275,7 +294,7 @@ const CreateOutfit = () => {
   };
 
   const eliminarPrenda = (e, index) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     setOutfitPreviews(prevPreviews => prevPreviews.filter((_, i) => i !== index));
   };
 
@@ -290,10 +309,10 @@ const CreateOutfit = () => {
       await addDoc(collection(db, "Prendas"), outfitPreview);
       setOutfitPreviews([...outfitPreviews, outfitPreview]);
       setOutfitPreview(initialState); // Resetear el formulario
-      alert("Prenda agregada con éxito");
+      toast.success("Prenda agregada con éxito");
     } catch (error) {
       console.error("Error agregando prenda: ", error);
-      alert("Error agregando prenda: " + error.message);
+      toast.error("Error agregando prenda: " + error.message);
     }
   };
 
@@ -333,7 +352,8 @@ const CreateOutfit = () => {
                   <option value="Abrigo">Abrigo</option>
                   <option value="Traje">Traje</option>
                   <option value="Zapatos">Zapatos</option>
-                  <option value="Bolso | Mochila">Bolso | Mochila</option>
+                  <option value="Sombrero">Sombrero</option>
+                  <option value="Bolso|Mochila">Bolso | Mochila</option>
                   <option value="Accesorio">Accesorio</option>
                 </StyledInputSelect>
               </StyledInputPosition>
@@ -354,7 +374,6 @@ const CreateOutfit = () => {
                 <StyledInputSelect
                   value={outfitPreview.tamaño}
                   onChange={(e) => setOutfitPreview({ ...outfitPreview, tamaño: e.target.value })}
-                  required
                 >
                   <option value="" disabled selected>Selecciona Tipo de Talla</option>
                   <option value="Sin Talla">Sin Talla</option>
@@ -366,13 +385,48 @@ const CreateOutfit = () => {
                   <option value="2XL">2XL</option>
                 </StyledInputSelect>
               </StyledInputPosition>
-              <StyledInput
-                type="text"
-                value={outfitPreview.color}
-                onChange={(e) => setOutfitPreview({ ...outfitPreview, color: e.target.value })}
-                placeholder="Color"
-                required
-              />
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.color}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, color: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>Selecciona el Color</option>
+                  <option value="Negro">Negro</option>
+                  <option value="Blanco">Blanco</option>
+                  <option value="Rojo">Rojo</option>
+                  <option value="Azul">Azul</option>
+                  <option value="Verde">Verde</option>
+                  <option value="Amarillo">Amarillo</option>
+                  <option value="Naranja">Naranja</option>
+                  <option value="Marrón">Marrón</option>
+                  <option value="Beige">Beige</option>
+                  <option value="Gris">Gris</option>
+                  <option value="Rosa">Rosa</option>
+                  <option value="Violeta">Violeta</option>
+                  <option value="Plata">Plata</option>
+                  <option value="Oro">Oro</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
+              <StyledInputPosition>
+                <StyledInputSelect
+                  value={outfitPreview.numeroZapato}
+                  onChange={(e) => setOutfitPreview({ ...outfitPreview, numeroZapato: e.target.value })}
+                >
+                  <option value="" disabled selected>Selecciona el Número de Calzado</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                </StyledInputSelect>
+              </StyledInputPosition>
               <StyledInput
                 type="text"
                 value={outfitPreview.marca}
@@ -399,6 +453,7 @@ const CreateOutfit = () => {
                   required
                 >
                   <option value="" disabled selected>Selecciona Temporada</option>
+                  <option value="CualquierEstación">Cualquier Estación</option>
                   <option value="Invierno">Invierno</option>
                   <option value="Primavera">Primavera</option>
                   <option value="Verano">Verano</option>
@@ -442,8 +497,10 @@ const CreateOutfit = () => {
             {prendas.map(prenda => (
               <PrendaItem key={prenda.id} onClick={() => agregarAPreview(prenda)}>
                 <img src={prenda.imagenUrl} alt="Prenda" style={{ width: '50px', height: 'auto' }} />
-                <p>{prenda.nombre}</p>
-                <p>{prenda.tipoEvento}</p>
+                <p><b>{prenda.nombre}</b></p>
+                <p>Tipo: {prenda.tipoPrenda}</p>
+                <p>Marca: {prenda.marca}</p>
+                <p>Género: {prenda.genero}</p>
               </PrendaItem>
             ))}
           </SelectorContainer>
@@ -452,20 +509,15 @@ const CreateOutfit = () => {
           modalIsOpen && (
             <Overlay>
               <Modal>
-                <div style={{ display: 'flex' }}>
-                  <div style={{ flex: 1 }}>
-                    <img src={selectedPrenda.imagenUrl} alt="Prenda" style={{ width: '100%', height: 'auto' }} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <h2>{selectedPrenda.nombre}</h2>
-                    <p>Tipo de Prenda: {selectedPrenda.tipoPrenda}</p>
-                    <p>Marca: {selectedPrenda.marca}</p>
-                    <p>Color: {selectedPrenda.color}</p>
-                    <p>Género: {selectedPrenda.marca}</p>
-                    {/* Más detalles de la prenda */}
-                    <StyledButton onClick={() => setModalIsOpen(false)}>Cerrar</StyledButton>
-                  </div>
+                <ModalImageBox><ModalImage src={selectedPrenda.imagenUrl} alt="Prenda" /></ModalImageBox>
+                <div>
+                  <ModalTitle>{selectedPrenda.nombre}</ModalTitle>
+                  <ModalText>Tipo de Prenda: {selectedPrenda.tipoPrenda}</ModalText>
+                  <ModalText>Marca: {selectedPrenda.marca}</ModalText>
+                  <ModalText>Color: {selectedPrenda.color}</ModalText>
+                  <ModalText>Género: {selectedPrenda.genero}</ModalText>
                 </div>
+                <StyledButton onClick={() => setModalIsOpen(false)}>Cerrar</StyledButton>
               </Modal>
             </Overlay>
           )

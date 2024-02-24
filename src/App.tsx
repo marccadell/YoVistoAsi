@@ -1,6 +1,8 @@
-import { Navigate, Routes, Route, BrowserRouter as Router, useLocation } from 'react-router-dom';
-import { Fragment, lazy, Suspense, useEffect } from "react";
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Fragment, lazy, Suspense, useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import './App.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
@@ -14,35 +16,33 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Team = lazy(() => import("./pages/Team"));
 const ScrollTop = lazy(() => import("./components/ScrollTop"));
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
-
-
-import { requireLoggedOut } from "./Guards/RouteGuard";
-
-import { ToastContainer } from "react-toastify";
-
-import Spinner from "./components/Spinner";
-
-
-import Objective from './pages/Objective';
+const Objective = lazy(() => import("./pages/Objective"));
+const Spinner = lazy(() => import("./components/Spinner"));
 
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // Cambia 5000 a la duración deseada en milisegundos
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <>
+    <Suspense fallback={loading && <Spinner />}>
     <ScrollTop/>
     <Router>
     <ScrollToTop/>
     <Fragment>
-      <Suspense fallback={<Spinner />}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Register" element={<Register />} />
-        {/*<Route
-              path="/Login"
-              element={requireLoggedOut() ? <Login /> : <Navigate to="/Login" />}
-        /> */}
         <Route path="/Login" element={<Login />} />
         <Route path="/CreateOutfit" element={<CreateOutfit />} />
         <Route path="/GenerateOutfit" element={<GenerateOutfit />} />
@@ -52,14 +52,11 @@ function App() {
         <Route path="/Team" element={<Team />} />
         <Route path="/Objective" element={<Objective />} />
       </Routes>
-
       <Footer />
       <ToastContainer autoClose={1000}/>
-      </Suspense>
     </Fragment>
     </Router>
-
-    
+    </Suspense>
     </>
   );
 }
