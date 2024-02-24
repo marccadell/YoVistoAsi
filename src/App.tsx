@@ -1,4 +1,4 @@
-import { Navigate, Routes, Route, BrowserRouter as Router, useLocation } from 'react-router-dom';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Fragment, lazy, Suspense, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import './App.css'
@@ -18,9 +18,6 @@ const ScrollTop = lazy(() => import("./components/ScrollTop"));
 const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
 const Objective = lazy(() => import("./pages/Objective"));
 const Spinner = lazy(() => import("./components/Spinner"));
-
-import { requireLoggedOut } from "./Guards/RouteGuard";
-
 
 
 function App() {
@@ -46,10 +43,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Register" element={<Register />} />
-        {/*<Route
-              path="/Login"
-              element={requireLoggedOut() ? <Login /> : <Navigate to="/Login" />}
-        /> */}
         <Route path="/Login" element={<Login />} />
         <Route path="/CreateOutfit" element={<CreateOutfit />} />
         <Route path="/GenerateOutfit" element={<GenerateOutfit />} />
@@ -59,14 +52,11 @@ function App() {
         <Route path="/Team" element={<Team />} />
         <Route path="/Objective" element={<Objective />} />
       </Routes>
-
       <Footer />
       <ToastContainer autoClose={1000}/>
     </Fragment>
     </Router>
     </Suspense>
-
-    
     </>
   );
 }

@@ -51,8 +51,6 @@ const SelectorContainer = styled.div`
   margin-top: 50px;
   overflow-y: auto; 
   max-height: 600px; 
-  border-bottom: 1px solid grey;
-  border-bottom-left-radius: 6px;
   grid-column: 1 / -1; 
 
   @media (max-width: 920px) {
@@ -74,20 +72,6 @@ const PreviewContainer = styled.div`
 const CustomizationContainer = styled.div`
   flex: 1;
   margin: 10px;
-`;
-
-const ActionButton = styled.button`
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    background-color: #0056b3;
-  }
 `;
 
 // Estilo del contenedor del formulario
@@ -227,12 +211,44 @@ const Overlay = styled.div`
 
 const Modal = styled.div`
   background: white;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 30px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
   max-width: 500px;
-  width: 90%; 
+  width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const ModalImage = styled.img`
+  max-width: 80%; 
+  max-height: 300px; 
+  object-fit: cover; 
+  border-radius: 5px; 
+  margin-bottom: 20px; 
+`;
+
+const ModalImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalTitle = styled.h2`
+  font-size: 24px; 
+  font-weight: bold;
+  color: #333; 
+  margin-bottom: 15px; 
+`;
+
+const ModalText = styled.p`
+  font-size: 16px; 
+  color: #555; 
+  line-height: 1.5; 
+  &:not(:last-child) {
+    margin-bottom: 10px; 
+  }
 `;
 
 const Hr = styled.hr`
@@ -278,7 +294,7 @@ const CreateOutfit = () => {
   };
 
   const eliminarPrenda = (e, index) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     setOutfitPreviews(prevPreviews => prevPreviews.filter((_, i) => i !== index));
   };
 
@@ -384,6 +400,7 @@ const CreateOutfit = () => {
                   <option value="Amarillo">Amarillo</option>
                   <option value="Naranja">Naranja</option>
                   <option value="Marrón">Marrón</option>
+                  <option value="Beige">Beige</option>
                   <option value="Gris">Gris</option>
                   <option value="Rosa">Rosa</option>
                   <option value="Violeta">Violeta</option>
@@ -480,8 +497,10 @@ const CreateOutfit = () => {
             {prendas.map(prenda => (
               <PrendaItem key={prenda.id} onClick={() => agregarAPreview(prenda)}>
                 <img src={prenda.imagenUrl} alt="Prenda" style={{ width: '50px', height: 'auto' }} />
-                <p>{prenda.nombre}</p>
-                <p>{prenda.tipoPrenda}</p>
+                <p><b>{prenda.nombre}</b></p>
+                <p>Tipo: {prenda.tipoPrenda}</p>
+                <p>Marca: {prenda.marca}</p>
+                <p>Género: {prenda.genero}</p>
               </PrendaItem>
             ))}
           </SelectorContainer>
@@ -490,20 +509,15 @@ const CreateOutfit = () => {
           modalIsOpen && (
             <Overlay>
               <Modal>
-                <div style={{ display: 'flex' }}>
-                  <div style={{ flex: 1 }}>
-                    <img src={selectedPrenda.imagenUrl} alt="Prenda" style={{ width: '100%', height: 'auto' }} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <h2>{selectedPrenda.nombre}</h2>
-                    <p>Tipo de Prenda: {selectedPrenda.tipoPrenda}</p>
-                    <p>Marca: {selectedPrenda.marca}</p>
-                    <p>Color: {selectedPrenda.color}</p>
-                    <p>Género: {selectedPrenda.genero}</p>
-                    {/* Más detalles de la prenda */}
-                    <StyledButton onClick={() => setModalIsOpen(false)}>Cerrar</StyledButton>
-                  </div>
+                <ModalImageBox><ModalImage src={selectedPrenda.imagenUrl} alt="Prenda" /></ModalImageBox>
+                <div>
+                  <ModalTitle>{selectedPrenda.nombre}</ModalTitle>
+                  <ModalText>Tipo de Prenda: {selectedPrenda.tipoPrenda}</ModalText>
+                  <ModalText>Marca: {selectedPrenda.marca}</ModalText>
+                  <ModalText>Color: {selectedPrenda.color}</ModalText>
+                  <ModalText>Género: {selectedPrenda.genero}</ModalText>
                 </div>
+                <StyledButton onClick={() => setModalIsOpen(false)}>Cerrar</StyledButton>
               </Modal>
             </Overlay>
           )

@@ -1,7 +1,9 @@
-import styled from "styled-components";
-import React, { useState } from 'react';
-import NavbarButton from './NavbarButton';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { toast } from "react-toastify";
+import NavbarButton from './NavbarButton';
+import styled from "styled-components";
 
 
 const NavContainer = styled.nav`

@@ -98,10 +98,11 @@ const ResultsContainer = styled.div`
   margin-top: 20px;
 `;
 
+
 const ResultCard = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; 
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
@@ -109,7 +110,7 @@ const ResultCard = styled.div`
 `;
 
 const EliminarButton = styled.button`
-  margin-left: 10px;
+  margin-left: auto;
   background-color: #ff6347;
   color: white;
   border: none;
@@ -284,9 +285,6 @@ const GeneradorPrendas = () => {
         }
       }
 
-      if (!agregado) {
-        toast.warning("Todas las prendas disponibles ya están en la vista previa o no cumplen con los filtros.");
-      }
     } else {
       toast.error("No hay prendas que cumplan con los filtros seleccionados.");
     }
@@ -357,6 +355,7 @@ const GeneradorPrendas = () => {
               <option value="Amarillo">Amarillo</option>
               <option value="Naranja">Naranja</option>
               <option value="Marrón">Marrón</option>
+              <option value="Beige">Beige</option>
               <option value="Gris">Gris</option>
               <option value="Rosa">Rosa</option>
               <option value="Violeta">Violeta</option>
@@ -376,6 +375,7 @@ const GeneradorPrendas = () => {
                   <h2>{prenda.nombre}</h2>
                   <p>Tipo: {prenda.tipoPrenda}</p>
                   <p>Marca: {prenda.marca}</p>
+                  <p>{prenda.genero}</p>
                 </PreviewParrafo>
                 <EliminarButton onClick={() => eliminarPrendaDeVistaPrevia(prenda.id)}>Eliminar</EliminarButton>
               </ResultCard>
