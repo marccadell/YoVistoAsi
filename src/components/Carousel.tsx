@@ -6,7 +6,7 @@ const CarouselContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 0 0 60px;
+    padding: 0 0 50px;
 `;
 
 const CarouselImg = styled.img`
@@ -75,7 +75,8 @@ function Carousel({ images, autoPlay, showButtons }) {
         <CarouselContainer>
             <CarouselImg src={(`src/assets/img/${selectedImage}`)} alt="Gentleman" className={loaded ? "loaded" : ""} onLoad={() => setLoaded(true)}/>
                 <CarouselButtonContainer>
-                    {
+            {/* 
+                {
                         showButtons ? (
                         <>
                             <CarouselButton onClick={previous}>{'<'}</CarouselButton>
@@ -84,6 +85,7 @@ function Carousel({ images, autoPlay, showButtons }) {
                         ) : (
                         <></>
                     )}
+            */}
                 </CarouselButtonContainer>
         </CarouselContainer>
         </>

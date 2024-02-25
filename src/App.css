@@ -3,4 +3,22 @@
   margin: 0;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+
+  ::-webkit-scrollbar {
+    width: 8px; 
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f11d; 
+    border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px; 
+
+    &:hover {
+        background: #555; 
+    } 
+}
 }

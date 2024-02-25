@@ -100,6 +100,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+::-webkit-scrollbar {
+        width: 8px; 
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgb(255, 255, 255); 
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgb(102, 102, 102); 
+        border-radius: 10px; 
+    }
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
