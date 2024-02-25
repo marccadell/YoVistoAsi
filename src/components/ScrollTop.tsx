@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../styles/ScrollTop.css";
 import { FaArrowTurnUp } from "react-icons/fa6";
+import "../styles/ScrollTop.css";
 
 const ScrollTop: React.FC = () => {
     const [showTopBtn, setShowTopBtn] = useState<boolean>(false);

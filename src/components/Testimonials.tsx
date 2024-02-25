@@ -34,14 +34,14 @@ const TestimonialsName = styled.p`
 
 
 function Testimonial({ desc, name }) {
-    return (
-      <TestimonialWrapper className="testimonial">
-          <TestimonialContainer>
-              <Blockquote>{desc}</Blockquote>
-              <TestimonialsName>{name}</TestimonialsName>
-          </TestimonialContainer>
-       </TestimonialWrapper>
-    )
-  }
-  
-  export default Testimonial
+  return (
+    <TestimonialWrapper className="testimonial">
+      <TestimonialContainer>
+        <Blockquote>{desc}</Blockquote>
+        <TestimonialsName>{name}</TestimonialsName>
+      </TestimonialContainer>
+    </TestimonialWrapper>
+  )
+}
+
+export default Testimonial

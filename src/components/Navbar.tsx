@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { toast } from "react-toastify";
 import NavbarButton from './NavbarButton';
 import styled from "styled-components";
 
@@ -30,7 +28,6 @@ const NavContainer = styled.nav`
 const NavLogo = styled.div`
   display: flex;
   justify-content: flex-start;
-
 `;
 
 const NavLogoImg = styled.img`
@@ -73,7 +70,7 @@ const MenuItem = styled.a`
     }
   }
 
-  .NavLinks { // Color de los links
+  .NavLinks { 
     color: #eaeaea;
     text-decoration: none;
 

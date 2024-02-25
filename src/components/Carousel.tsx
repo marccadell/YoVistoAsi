@@ -47,7 +47,7 @@ function Carousel({ images, autoPlay, showButtons }) {
         if(autoPlay || showButtons) {
             const interval = setInterval(() => {
                 selectNewImage(selectedIndex, images);
-            }, 2000); //Intervalo de tiempo entre transición de foto
+            }, 2000);
             return () => clearInterval(interval);
         }  
     })

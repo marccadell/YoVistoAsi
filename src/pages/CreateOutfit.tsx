@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { addDoc, getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -29,7 +29,6 @@ const SectionTitle = styled.h1`
     text-align: center;
 `;
 
-
 const OutfitCreatorContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr; 
@@ -40,7 +39,6 @@ const OutfitCreatorContainer = styled.div`
   box-shadow: 0 2px 15px rgba(0,0,0,0.3);
   border-radius: 10px;
   
-
   @media (max-width: 920px) {
     grid-template-columns: 1fr; 
   }
@@ -74,7 +72,6 @@ const CustomizationContainer = styled.div`
   margin: 10px;
 `;
 
-// Estilo del contenedor del formulario
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -84,11 +81,11 @@ const FormContainer = styled.form`
   margin: 0 auto;
 `;
 
-// Estilo de los inputs
 const StyledInput = styled.input`
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+
   &:focus {
     outline: none;
     border-color: #007bff;
@@ -100,6 +97,7 @@ const StyledInputSelect = styled.select`
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 100%;
+
   &:focus {
     outline: none;
     border-color: #007bff;
@@ -117,8 +115,6 @@ const StyledInputPosition = styled.div`
   position: relative;
 `;
 
-
-// Estilo del botón
 const StyledButton = styled.button`
   padding: 10px 20px;
   border-radius: 5px;
@@ -126,12 +122,12 @@ const StyledButton = styled.button`
   background-color: #007bff;
   color: white;
   cursor: pointer;
+
   &:hover {
     background-color: #0056b3;
   }
 `;
 
-// Estilo del botón Success
 const StyledButtonSuccess = styled.button`
   padding: 10px 20px;
   border-radius: 5px;
@@ -139,6 +135,7 @@ const StyledButtonSuccess = styled.button`
   background-color: #0ebd1c;
   color: white;
   cursor: pointer;
+
   &:hover {
     background-color: #2fdf3e;
   }
@@ -210,6 +207,7 @@ const PrendaItem = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
   background-color: #ffffff;
+
   &:hover {
     background-color: #64a6ec16;
     border-color: #89bcf390;
@@ -266,6 +264,7 @@ const ModalText = styled.p`
   font-size: 16px; 
   color: #555; 
   line-height: 1.5; 
+
   &:not(:last-child) {
     margin-bottom: 10px; 
   }
@@ -277,7 +276,6 @@ const Hr = styled.hr`
   border: none;
   border-top: 3px solid #534d4d51;
 `;
-
 
 const initialState = {
   nombre: '',
@@ -329,9 +327,8 @@ const CreateOutfit = () => {
     try {
       await setDoc(doc(db, "Prendas", selectedPrenda.id), selectedPrenda);
       toast.success("Prenda actualizada con éxito");
-      setModalIsOpen(false); // Cierra el modal después de la actualización
+      setModalIsOpen(false);
 
-      // Actualiza la lista de prendas para reflejar el cambio
       const updatedPrendas = prendas.map(prenda => prenda.id === selectedPrenda.id ? selectedPrenda : prenda);
       setPrendas(updatedPrendas);
     } catch (error) {
@@ -345,7 +342,7 @@ const CreateOutfit = () => {
     try {
       await addDoc(collection(db, "Prendas"), outfitPreview);
       setOutfitPreviews([...outfitPreviews, outfitPreview]);
-      setOutfitPreview(initialState); // Resetear el formulario
+      setOutfitPreview(initialState);
       toast.success("Prenda agregada con éxito");
     } catch (error) {
       console.error("Error agregando prenda: ", error);
@@ -588,7 +585,7 @@ const CreateOutfit = () => {
                     </StyledInputSelect>
                   </ModalText>
                   <ModalText>
-                    Color: 
+                    Color:
                     <StyledInputSelect
                       value={selectedPrenda.color || ''}
                       onChange={(e) => setSelectedPrenda({ ...selectedPrenda, color: e.target.value })}
@@ -611,7 +608,7 @@ const CreateOutfit = () => {
                     </StyledInputSelect>
                   </ModalText>
                   <ModalText>
-                    Género: 
+                    Género:
                     <StyledInputSelect
                       value={selectedPrenda.genero || ''}
                       onChange={(e) => setSelectedPrenda({ ...selectedPrenda, genero: e.target.value })}

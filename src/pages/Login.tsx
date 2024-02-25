@@ -7,8 +7,8 @@ import { auth } from "../firebase";
 import { toast } from 'react-toastify';
 
 interface LoginInputs {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 const LoginContainer = styled.div`
@@ -80,23 +80,23 @@ const SubmitButton = styled.button`
 `;
 
 const NoRegistered = styled.p`
-    text-align: center;
-    font-size: 12px;
-    color: var(--clr-form-primary);
-    margin-top: 25px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--clr-form-primary);
+  margin-top: 25px;
 `;
 
 const BgContainer = styled.div`
   background-image: url("src/assets/img/bg-login.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-
 `;
+
 
 function Login() {
     const [inputs, setInputs] = useState<LoginInputs>({
-        email: "",
-        password: "",
+      email: "",
+      password: "",
     });
 
     const navigate = useNavigate();
@@ -104,67 +104,65 @@ function Login() {
     const { login } = useContext(AuthContext);
 
     if (!login) {
-        console.error("Login function is not defined");
-        return <div>Error: login function not available</div>;
+      console.error("Login function is not defined");
+      return <div>Error: login function not available</div>;
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setInputs(prev => ({ ...prev, [name]: value }));
+      const { name, value } = e.target;
+      setInputs(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const { email, password } = inputs;
-    
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    
-            console.log("Inicio de sesión exitoso:", userCredential.user);
-            
-            navigate("/"); // Asegúrate de cambiar "/" por la ruta a la que quieres redirigir después del inicio de sesión
-            toast.success("Inicio de sesión exitoso");
-        } catch (error) {
-            toast.error("Error en el inicio de sesión:", error);
-            
-        }
+      e.preventDefault();
+      const { email, password } = inputs;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+        console.log("Inicio de sesión exitoso:", userCredential.user);
+
+        navigate("/");
+        toast.success("Inicio de sesión exitoso");
+      } catch (error) {
+        toast.error("Error en el inicio de sesión:", error);
+      }
     };
 
 
     return (
-        <BgContainer>
+      <BgContainer>
         <LoginContainer>
-            <LoginForm autoComplete="on" onSubmit={handleSubmit}>
+          <LoginForm autoComplete="on" onSubmit={handleSubmit}>
             <LoginTitle>Iniciar Sesión</LoginTitle>
-                <InputBox>
-                    <LoginLabel>Correo Electrónico</LoginLabel>
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={handleChange}
-                        required
-                    />
-                </InputBox>
-                <InputBox>
-                    <LoginLabel>Password</LoginLabel>
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={handleChange}
-                        required
-                    />
-                </InputBox>
-                <ButtonBox>
-                    <SubmitButton type="submit">Login</SubmitButton>
-                </ButtonBox>
-                
-                <NoRegistered>
-                    No tienes cuenta? <Link to="/Register">Registrate aquí</Link>
-                </NoRegistered>
-            </LoginForm>
+            <InputBox>
+              <LoginLabel>Correo Electrónico</LoginLabel>
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                required
+              />
+            </InputBox>
+            <InputBox>
+              <LoginLabel>Password</LoginLabel>
+              <input
+                type="password"
+                name="password"
+                onChange={handleChange}
+                required
+              />
+            </InputBox>
+            <ButtonBox>
+              <SubmitButton type="submit">Login</SubmitButton>
+            </ButtonBox>
+            <NoRegistered>
+              No tienes cuenta? <Link to="/Register">Registrate aquí</Link>
+            </NoRegistered>
+          </LoginForm>
         </LoginContainer>
-        </BgContainer>
+      </BgContainer>
     );
-}
+  }
 
 export default Login;

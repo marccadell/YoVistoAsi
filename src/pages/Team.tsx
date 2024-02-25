@@ -13,7 +13,6 @@ const Container = styled.div`
     max-width: 1000px;
     margin: 0 auto;
     padding: 2em;
-
 `;
 
 const ContainerSecondary = styled.div`
@@ -23,7 +22,6 @@ const ContainerSecondary = styled.div`
     border-radius: 15px;
     margin: 70px auto;
 `;
-
 
 const TeamSection = styled.div`
     display: flex;
@@ -45,7 +43,6 @@ const TeamMembers = styled.div`
     transition: var(--ts);
     background-color: var(--clr-box-bg);
     width: 199px;
-    
 `;
 
 const Titulo = styled.h1`
@@ -56,7 +53,6 @@ const Titulo = styled.h1`
     @media screen and (max-width: 1096px) and (min-width: 500px) {
         text-align: center;
     }
-    
 `;
 
 const SubTitulo = styled.h2`
@@ -120,14 +116,12 @@ const Team: React.FC = () => {
                                 <SubTitulo>Mirjhon Kaliwaz</SubTitulo>
                                 <Parrafo>Director de Proyectos</Parrafo>
                             </TeamMembers>
-
                         </TeamSection>
                         <BoxLogo><Logo src="src/assets/img/logo.webp"></Logo></BoxLogo>
                 </ContainerSecondary>
             </Container>
         </BgContainer>
     )
-
 }
 
 

@@ -1,5 +1,4 @@
 import React from "react"
-import { Navigate, Route } from "react-router";
 import styled from "styled-components"
 
 const BgContainer = styled.div`
@@ -34,8 +33,6 @@ const TermsBox = styled.div`
     @media screen and (max-width: 799px) and (min-width: 500px) {
         margin: 80px 60px 80px 60px;
     }
-
-
 `;
 
 const Titulo = styled.h1`
@@ -139,14 +136,12 @@ const TermsAndConditions: React.FC = () => {
                                 accediendo a su cuenta en el sitio web.
                             </Parrafo>
                         <SubTitulo>6. Cambios en el Aviso de Privacidad</SubTitulo>
-                            <Parrafo>YoVistoAsí se reserva el derecho de modificar este aviso de privacidad en cualquier momento.</Parrafo>
-                            
+                            <Parrafo>YoVistoAsí se reserva el derecho de modificar este aviso de privacidad en cualquier momento.</Parrafo>                     
                         <BoxLogo><Logo src="/src/assets/img/logo.webp"/></BoxLogo>    
                 </TermsBox>
             </Container>
         </BgContainer>
     )
-
 }
 
 

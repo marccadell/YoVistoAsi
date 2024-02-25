@@ -155,7 +155,7 @@ const LinkRow = styled.div`
     padding-right: 5px;
     font-size: 18px;
     &:hover {
-      color: #cdcbcb;
+      color: #ffffff;
       > span {
         > i {
           color: #cdcbcb;
@@ -168,6 +168,10 @@ const LinkRow = styled.div`
       justify-content: center;
       text-align: center;
     }
+`;
+
+const SocialIcon = styled.em`
+  color: #999999;
 `;
 
 const FooterObj = [
@@ -212,11 +216,6 @@ const FooterObj = [
         name: "Instagram",
         link: "https://www.instagram.com/yovistoasiteam/",
         icon: faInstagram,
-      },
-      {
-        name: "Twitter",
-        link: "https://twitter.com/?lang=es",
-        icon: faTwitter,
       },
     ],
   },
@@ -266,9 +265,6 @@ const newObj = [
   },
 ];
 
-const SocialIcon = styled.em`
-  color: #141414;
-`;
 
 function Footer() {
   return (
