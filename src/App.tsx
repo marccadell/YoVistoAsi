@@ -24,7 +24,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000); // Cambia 5000 a la duración deseada en milisegundos
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -34,29 +34,29 @@ function App() {
 
   return (
     <>
-    <Suspense fallback={loading && <Spinner />}>
-    <ScrollTop/>
-    <Router>
-    <ScrollToTop/>
-    <Fragment>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/CreateOutfit" element={<CreateOutfit />} />
-        <Route path="/GenerateOutfit" element={<GenerateOutfit />} />
-        
-        <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/Team" element={<Team />} />
-        <Route path="/Objective" element={<Objective />} />
-      </Routes>
-      <Footer />
-      <ToastContainer autoClose={1000}/>
-    </Fragment>
-    </Router>
-    </Suspense>
+      <Suspense fallback={loading && <Spinner />}>
+      <ScrollTop/>
+        <Router>
+        <ScrollToTop/>
+          <Fragment>
+            <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/Register" element={<Register />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/CreateOutfit" element={<CreateOutfit />} />
+                <Route path="/GenerateOutfit" element={<GenerateOutfit />} />
+                
+                <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+                <Route path="/Contact" element={<Contact />} />
+                <Route path="/Team" element={<Team />} />
+                <Route path="/Objective" element={<Objective />} />
+              </Routes>
+            <Footer />
+            <ToastContainer autoClose={1000}/>
+          </Fragment>
+        </Router>
+      </Suspense>
     </>
   );
 }

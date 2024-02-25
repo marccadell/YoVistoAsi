@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { addDoc, getDocs, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -29,7 +29,6 @@ const SectionTitle = styled.h1`
     text-align: center;
 `;
 
-
 const OutfitCreatorContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr; 
@@ -40,7 +39,6 @@ const OutfitCreatorContainer = styled.div`
   box-shadow: 0 2px 15px rgba(0,0,0,0.3);
   border-radius: 10px;
   
-
   @media (max-width: 920px) {
     grid-template-columns: 1fr; 
   }
@@ -74,7 +72,6 @@ const CustomizationContainer = styled.div`
   margin: 10px;
 `;
 
-// Estilo del contenedor del formulario
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -84,11 +81,11 @@ const FormContainer = styled.form`
   margin: 0 auto;
 `;
 
-// Estilo de los inputs
 const StyledInput = styled.input`
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+
   &:focus {
     outline: none;
     border-color: #007bff;
@@ -100,18 +97,24 @@ const StyledInputSelect = styled.select`
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 100%;
+
   &:focus {
     outline: none;
     border-color: #007bff;
   }
 `;
 
+const StyledInputURL = styled.input`
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 95.5%;
+`;
+
 const StyledInputPosition = styled.div`
   position: relative;
 `;
 
-
-// Estilo del botón
 const StyledButton = styled.button`
   padding: 10px 20px;
   border-radius: 5px;
@@ -119,8 +122,22 @@ const StyledButton = styled.button`
   background-color: #007bff;
   color: white;
   cursor: pointer;
+
   &:hover {
     background-color: #0056b3;
+  }
+`;
+
+const StyledButtonSuccess = styled.button`
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0ebd1c;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2fdf3e;
   }
 `;
 
@@ -190,6 +207,7 @@ const PrendaItem = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
   background-color: #ffffff;
+
   &:hover {
     background-color: #64a6ec16;
     border-color: #89bcf390;
@@ -246,6 +264,7 @@ const ModalText = styled.p`
   font-size: 16px; 
   color: #555; 
   line-height: 1.5; 
+
   &:not(:last-child) {
     margin-bottom: 10px; 
   }
@@ -257,7 +276,6 @@ const Hr = styled.hr`
   border: none;
   border-top: 3px solid #534d4d51;
 `;
-
 
 const initialState = {
   nombre: '',
@@ -277,7 +295,7 @@ const CreateOutfit = () => {
   const [outfitPreviews, setOutfitPreviews] = useState([]);
   const [outfitPreview, setOutfitPreview] = useState(initialState);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedPrenda, setSelectedPrenda] = useState(null);
+  const [selectedPrenda, setSelectedPrenda] = useState(initialState);
 
   useEffect(() => {
     const obtenerPrendas = async () => {
@@ -303,12 +321,28 @@ const CreateOutfit = () => {
     setModalIsOpen(true);
   };
 
+  const actualizarPrenda = async () => {
+    if (!selectedPrenda.id) return;
+
+    try {
+      await setDoc(doc(db, "Prendas", selectedPrenda.id), selectedPrenda);
+      toast.success("Prenda actualizada con éxito");
+      setModalIsOpen(false);
+
+      const updatedPrendas = prendas.map(prenda => prenda.id === selectedPrenda.id ? selectedPrenda : prenda);
+      setPrendas(updatedPrendas);
+    } catch (error) {
+      console.error("Error al actualizar prenda: ", error);
+      toast.error("Error al actualizar prenda");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await addDoc(collection(db, "Prendas"), outfitPreview);
       setOutfitPreviews([...outfitPreviews, outfitPreview]);
-      setOutfitPreview(initialState); // Resetear el formulario
+      setOutfitPreview(initialState);
       toast.success("Prenda agregada con éxito");
     } catch (error) {
       console.error("Error agregando prenda: ", error);
@@ -512,11 +546,139 @@ const CreateOutfit = () => {
                 <ModalImageBox><ModalImage src={selectedPrenda.imagenUrl} alt="Prenda" /></ModalImageBox>
                 <div>
                   <ModalTitle>{selectedPrenda.nombre}</ModalTitle>
-                  <ModalText>Tipo de Prenda: {selectedPrenda.tipoPrenda}</ModalText>
                   <ModalText>Marca: {selectedPrenda.marca}</ModalText>
-                  <ModalText>Color: {selectedPrenda.color}</ModalText>
-                  <ModalText>Género: {selectedPrenda.genero}</ModalText>
+                  <ModalText>
+                    Tipo de Prenda:
+                    <StyledInputSelect
+                      value={selectedPrenda.tipoPrenda || ''}
+                      onChange={(e) => setSelectedPrenda({ ...selectedPrenda, tipoPrenda: e.target.value })}
+                    >
+                      <option value="Camisa">Camisa</option>
+                      <option value="Polo">Polo</option>
+                      <option value="Camiseta">Camiseta</option>
+                      <option value="Sobrecamisa">Sobrecamisa</option>
+                      <option value="Jersey">Jerséy</option>
+                      <option value="Chaqueta">Chaqueta</option>
+                      <option value="Sudadera">Sudadera</option>
+                      <option value="Chandal">Chándal</option>
+                      <option value="Pantalon">Pantalón</option>
+                      <option value="Jeans">Jeans</option>
+                      <option value="Abrigo">Abrigo</option>
+                      <option value="Traje">Traje</option>
+                      <option value="Zapatos">Zapatos</option>
+                      <option value="Sombrero">Sombrero</option>
+                      <option value="Bolso|Mochila">Bolso | Mochila</option>
+                      <option value="Accesorio">Accesorio</option>
+                    </StyledInputSelect>
+                  </ModalText>
+                  <ModalText>
+                    Tipo de Evento:
+                    <StyledInputSelect
+                      value={selectedPrenda.tipoEvento || ''}
+                      onChange={(e) => setSelectedPrenda({ ...selectedPrenda, tipoEvento: e.target.value })}
+                      required
+                    >
+                      <option value="Casual">Casual</option>
+                      <option value="Arreglado">Arreglado</option>
+                      <option value="Urbano">Urbano</option>
+                      <option value="Gala">Elegante</option>
+                    </StyledInputSelect>
+                  </ModalText>
+                  <ModalText>
+                    Color:
+                    <StyledInputSelect
+                      value={selectedPrenda.color || ''}
+                      onChange={(e) => setSelectedPrenda({ ...selectedPrenda, color: e.target.value })}
+                      required
+                    >
+                      <option value="Negro">Negro</option>
+                      <option value="Blanco">Blanco</option>
+                      <option value="Rojo">Rojo</option>
+                      <option value="Azul">Azul</option>
+                      <option value="Verde">Verde</option>
+                      <option value="Amarillo">Amarillo</option>
+                      <option value="Naranja">Naranja</option>
+                      <option value="Marrón">Marrón</option>
+                      <option value="Beige">Beige</option>
+                      <option value="Gris">Gris</option>
+                      <option value="Rosa">Rosa</option>
+                      <option value="Violeta">Violeta</option>
+                      <option value="Plata">Plata</option>
+                      <option value="Oro">Oro</option>
+                    </StyledInputSelect>
+                  </ModalText>
+                  <ModalText>
+                    Género:
+                    <StyledInputSelect
+                      value={selectedPrenda.genero || ''}
+                      onChange={(e) => setSelectedPrenda({ ...selectedPrenda, genero: e.target.value })}
+                      required
+                    >
+                      <option value="Hombre">Hombre</option>
+                      <option value="Mujer">Mujer</option>
+                      <option value="Unisex">Unisex</option>
+                    </StyledInputSelect>
+                  </ModalText>
+                  <ModalText>
+                    Tamaño:
+                    <StyledInputSelect
+                      value={selectedPrenda.tamaño || ''}
+                      onChange={(e) => setSelectedPrenda({ ...selectedPrenda, tamaño: e.target.value })}
+                    >
+                      <option value="Sin Talla">Sin Talla</option>
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="2XL">2XL</option>
+                    </StyledInputSelect>
+                  </ModalText>
+                  <ModalText>
+                    Número de Calzado:
+                    <StyledInputSelect
+                      value={selectedPrenda.numeroZapato || ''}
+                      onChange={(e) => setSelectedPrenda({ ...selectedPrenda, numeroZapato: e.target.value })}
+                    >
+                      <option value="Sin Talla">Sin Talla</option>
+                      <option value="36">36</option>
+                      <option value="37">37</option>
+                      <option value="38">38</option>
+                      <option value="39">39</option>
+                      <option value="40">40</option>
+                      <option value="41">41</option>
+                      <option value="42">42</option>
+                      <option value="43">43</option>
+                      <option value="44">44</option>
+                      <option value="45">45</option>
+                      <option value="46">46</option>
+                    </StyledInputSelect>
+                  </ModalText>
+                  <ModalText>
+                    Temporada: {selectedPrenda.temporada}
+                    <StyledInputSelect
+                      value={selectedPrenda.temporada || ''}
+                      onChange={(e) => setSelectedPrenda({ ...selectedPrenda, temporada: e.target.value })}
+                      required
+                    >
+                      <option value="CualquierEstación">Cualquier Estación</option>
+                      <option value="Invierno">Invierno</option>
+                      <option value="Primavera">Primavera</option>
+                      <option value="Verano">Verano</option>
+                      <option value="Otoño">Otoño</option>
+                    </StyledInputSelect>
+                  </ModalText>
+                  <ModalText>
+                    URL Imágen:
+                    <StyledInputURL
+                      type="text"
+                      value={selectedPrenda.imagenUrl || ''}
+                      onChange={(e) => setSelectedPrenda({ ...selectedPrenda, imagenUrl: e.target.value })}
+                      required
+                    />
+                  </ModalText>
                 </div>
+                <StyledButtonSuccess onClick={actualizarPrenda}>Guardar Cambios</StyledButtonSuccess>
                 <StyledButton onClick={() => setModalIsOpen(false)}>Cerrar</StyledButton>
               </Modal>
             </Overlay>
@@ -530,65 +692,5 @@ const CreateOutfit = () => {
 
 export default CreateOutfit;
 
-{/*const CreateOutfit: React.FC = () => {
-    
-    // ES FUNCIONAL!!!!!
-    const [color, setColor] = useState('');
-    const [genero, setGenero] = useState('');
-    const [imagenUrl, setImagenUrl] = useState('');
-    const [marca, setMarca] = useState('');
-    const [tamaño, setTamaño] = useState('');
-    const [temporada, setTemporada] = useState('');
-    const [tipo, setTipo] = useState('');
-    const [tipoEvento, setTipoEvento] = useState('');
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        // ES FUNCIONAL!!!!!
-        e.preventDefault();
-        try {
-            await addDoc(collection(db, "Prendas"), {
-                color,
-                genero,
-                imagenUrl,
-                marca,
-                tamaño,
-                temporada,
-                tipo,
-                tipoEvento
-            });
-            
-            console.log("Prenda agregada con éxito");
-        } catch (error) {
-            console.error("Error agregando prenda: ", error);
-        }
-    };
-
-    return (
-        <PageContainer>
-            <SectionTitle>Creador de Outfits</SectionTitle>
-            <OutfitCreatorContainer>
-                <SelectorContainer>
-                    <h3>Selecciona tus Prendas</h3>
-                </SelectorContainer>
-                <PreviewContainer>
-                    <h3>Vista Previa del Outfit</h3>
-                </PreviewContainer>
-                <CustomizationContainer>
-                    <FormContainer onSubmit={handleSubmit}>
-                        <StyledInput type="text" value={color} onChange={(e) => setColor(e.target.value)} placeholder="Color" />
-                        <StyledInput type="text" value={genero} onChange={(e) => setGenero(e.target.value)} placeholder="Género" />
-                        <StyledInput type="text" value={imagenUrl} onChange={(e) => setImagenUrl(e.target.value)} placeholder="URL de la Imagen" />
-                        <StyledInput type="text" value={marca} onChange={(e) => setMarca(e.target.value)} placeholder="Marca" />
-                        <StyledInput type="text" value={tamaño} onChange={(e) => setTamaño(e.target.value)} placeholder="Tamaño" />
-                        <StyledInput type="text" value={temporada} onChange={(e) => setTemporada(e.target.value)} placeholder="Temporada" />
-                        <StyledInput type="text" value={tipo} onChange={(e) => setTipo(e.target.value)} placeholder="Tipo" />
-                        <StyledInput type="text" value={tipoEvento} onChange={(e) => setTipoEvento(e.target.value)} placeholder="Tipo de Evento" />
-                        <StyledButton type="submit">Agregar Prenda</StyledButton>
-                    </FormContainer>
-                </CustomizationContainer>
-            </OutfitCreatorContainer>
-        </PageContainer>
-    )
-} */}
 
 

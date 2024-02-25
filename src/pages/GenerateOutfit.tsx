@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { addDoc, getDocs, collection, doc, setDoc, where, query } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -29,7 +29,6 @@ const Container = styled.div`
   background-color: #f9f9f9;
   box-shadow: 0 2px 15px rgba(0,0,0,0.3);
   border-radius: 10px;
-
 `;
 
 const Title = styled.h1`
@@ -51,13 +50,6 @@ const Label = styled.label`
   margin-bottom: 10px;
 `;
 
-{/*const Input = styled.input`
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-`;*/}
-
 const ButtonBox = styled.div`
   display: flex;
   justify-content: center;
@@ -73,7 +65,6 @@ const Button = styled.button`
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
-
 
   &:hover {
     background-color: #0056b3;
@@ -97,7 +88,6 @@ const Select = styled.select`
 const ResultsContainer = styled.div`
   margin-top: 20px;
 `;
-
 
 const ResultCard = styled.div`
   display: flex;
@@ -208,9 +198,6 @@ const lanzarConfeti = () => {
     origin: { y: 0.6 },
   });
 };
-
-
-
 
 
 const GeneradorPrendas = () => {

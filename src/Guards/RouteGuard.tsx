@@ -10,6 +10,5 @@ export const requireLoggedOut = (): boolean => {
 
   const { currentUser } = context;
   
-  // User is logged in, prevent navigation to login route
   return !currentUser;
 };

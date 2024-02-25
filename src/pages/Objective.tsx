@@ -110,55 +110,50 @@ function Objective() {
 
     return (
         <BgContainer>
-        <Container>
-            <ObjectiveBox>
-                <Titulo>Nuestro Objetivo</Titulo>
-                    <Titulo2>Objetivos de Desarrollo Sostenible (ODS)</Titulo2>
-                        <SubTitulo>Introducción a los ODS</SubTitulo>
-                        <Parrafo>En YoVistoAsí, nos comprometemos con los Objetivos de Desarrollo 
-                            Sostenible establecidos por las Naciones Unidas. Estos 17 objetivos son 
-                            nuestra guía para contribuir a un mundo más sostenible y justo para todos.
-                        </Parrafo>
-                        <BoxImg><Imagen src="src/assets/img/odsintro.png"/></BoxImg>  
-                    <Titulo2>ODS 12: Producción y Consumo Responsables</Titulo2>
-                        <SubTitulo>¿Qué es la ODS 12?</SubTitulo>
-                        <Parrafo>En YoVistoAsí, entendemos que la ODS 12 es crucial para nuestro futuro. 
-                            Se enfoca en la adopción de prácticas sostenibles de producción y consumo, 
-                            reduciendo el impacto ambiental y maximizando la eficiencia de los recursos.
-                        </Parrafo>
-                        <BoxBanner><Banner src="src/assets/img/ods12banner.png"/></BoxBanner>
-                        <SubTitulo>Importancia de la ODS 12 para Nosotros</SubTitulo>
-                        <Parrafo>Para nosotros en YoVistoAsí, este objetivo es esencial. Nos esforzamos por 
-                            lograr un equilibrio entre uso de ropa de forma responsable y la preservación del medio 
-                            ambiente. Creemos firmemente que podemos mejorar la calidad de vida de todos, minimizando 
-                            al mismo tiempo nuestro impacto en el planeta.
-                        </Parrafo>
-                    <Titulo2>Nuestra Implementación de la ODS 12</Titulo2>
-                        <SubTitulo>Nuestras Acciones y Ejemplos</SubTitulo>
-                        <Parrafo>En YoVistoAsí, adoptamos medidas concretas para cumplir con la ODS 12. Desde políticas 
-                            de reciclaje en nuestras oficinas hasta la promoción de prendas de ropa y servicios sostenibles, 
-                            cada paso cuenta.
-                        </Parrafo>
-                        <SubTitulo>Nuestro Compromiso en YoVistoAsí</SubTitulo>
-                        <Parrafo>Estamos comprometidos con la reducción de residuos y el uso eficiente de recursos. 
-                            Nuestras políticas y prácticas internas reflejan este compromiso, y estamos orgullosos de 
-                            compartir nuestras iniciativas y logros con nuestra comunidad.
-                        </Parrafo>
-                    <Titulo2>Participa y Contribuye con Nosotros</Titulo2>
-                        <SubTitulo>Llamado a la Acción</SubTitulo>
-                        <Parrafo>En YoVistoAsí, animamos a todos a unirse a nosotros en la promoción de prácticas sostenibles. 
-                            Pequeños cambios en el estilo de vida o la participación en iniciativas comunitarias pueden hacer 
-                            una gran diferencia. Juntos, podemos lograr un impacto significativo hacia un futuro más sostenible.
-                        </Parrafo>
-                    <BoxLogo><Logo src="src/assets/img/logo.webp"/></BoxLogo>
-            </ObjectiveBox>
-
-        </Container>
-
+            <Container>
+                <ObjectiveBox>
+                    <Titulo>Nuestro Objetivo</Titulo>
+                        <Titulo2>Objetivos de Desarrollo Sostenible (ODS)</Titulo2>
+                            <SubTitulo>Introducción a los ODS</SubTitulo>
+                            <Parrafo>En YoVistoAsí, nos comprometemos con los Objetivos de Desarrollo 
+                                Sostenible establecidos por las Naciones Unidas. Estos 17 objetivos son 
+                                nuestra guía para contribuir a un mundo más sostenible y justo para todos.
+                            </Parrafo>
+                            <BoxImg><Imagen src="src/assets/img/odsintro.png"/></BoxImg>  
+                        <Titulo2>ODS 12: Producción y Consumo Responsables</Titulo2>
+                            <SubTitulo>¿Qué es la ODS 12?</SubTitulo>
+                            <Parrafo>En YoVistoAsí, entendemos que la ODS 12 es crucial para nuestro futuro. 
+                                Se enfoca en la adopción de prácticas sostenibles de producción y consumo, 
+                                reduciendo el impacto ambiental y maximizando la eficiencia de los recursos.
+                            </Parrafo>
+                            <BoxBanner><Banner src="src/assets/img/ods12banner.png"/></BoxBanner>
+                            <SubTitulo>Importancia de la ODS 12 para Nosotros</SubTitulo>
+                            <Parrafo>Para nosotros en YoVistoAsí, este objetivo es esencial. Nos esforzamos por 
+                                lograr un equilibrio entre uso de ropa de forma responsable y la preservación del medio 
+                                ambiente. Creemos firmemente que podemos mejorar la calidad de vida de todos, minimizando 
+                                al mismo tiempo nuestro impacto en el planeta.
+                            </Parrafo>
+                        <Titulo2>Nuestra Implementación de la ODS 12</Titulo2>
+                            <SubTitulo>Nuestras Acciones y Ejemplos</SubTitulo>
+                            <Parrafo>En YoVistoAsí, adoptamos medidas concretas para cumplir con la ODS 12. Desde políticas 
+                                de reciclaje en nuestras oficinas hasta la promoción de prendas de ropa y servicios sostenibles, 
+                                cada paso cuenta.
+                            </Parrafo>
+                            <SubTitulo>Nuestro Compromiso en YoVistoAsí</SubTitulo>
+                            <Parrafo>Estamos comprometidos con la reducción de residuos y el uso eficiente de recursos. 
+                                Nuestras políticas y prácticas internas reflejan este compromiso, y estamos orgullosos de 
+                                compartir nuestras iniciativas y logros con nuestra comunidad.
+                            </Parrafo>
+                        <Titulo2>Participa y Contribuye con Nosotros</Titulo2>
+                            <SubTitulo>Llamado a la Acción</SubTitulo>
+                            <Parrafo>En YoVistoAsí, animamos a todos a unirse a nosotros en la promoción de prácticas sostenibles. 
+                                Pequeños cambios en el estilo de vida o la participación en iniciativas comunitarias pueden hacer 
+                                una gran diferencia. Juntos, podemos lograr un impacto significativo hacia un futuro más sostenible.
+                            </Parrafo>
+                        <BoxLogo><Logo src="src/assets/img/logo.webp"/></BoxLogo>
+                </ObjectiveBox>
+            </Container>
         </BgContainer>
-        
-        
-        
     );
 }
 
